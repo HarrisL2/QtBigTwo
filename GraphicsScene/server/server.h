@@ -7,6 +7,8 @@
 
 class Server : public QTcpServer
 {
+    Q_OBJECT
+
 public:
     Server(QObject* parent = nullptr);
 
@@ -17,7 +19,7 @@ public:
     int getNumPlayers() const;
     int getNumAI() const;
 signals:
-    void recievedData(Worker* client, const QJsonObject data);
+    void recievedData(Worker* client, const QJsonObject& data);
 
 
 private slots:

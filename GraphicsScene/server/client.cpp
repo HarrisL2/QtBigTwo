@@ -31,3 +31,11 @@ void Client::sendData(const QJsonObject &data) {
     stream.setVersion(QDataStream::Qt_5_12);
     stream << QJsonDocument(data).toJson(QJsonDocument::Compact);
 }
+
+void Client::setName(QString name) {
+    this->name = name;
+}
+
+QString Client::getName() {
+    return name;
+}

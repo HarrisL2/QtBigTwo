@@ -49,7 +49,7 @@ void Server::readData(Worker* client, const QJsonObject& data) {
     //server specific work here
 
 
-    emit recievedData(client, data);
+    emit this->recievedData(client, data);
 }
 
 void Server::clientDisconnected(Worker* client) {

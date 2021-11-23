@@ -18,6 +18,7 @@ SOURCES += \
     server/gameengine.cpp \
     server/server.cpp \
     server/worker.cpp \
+    startingwindow.cpp \
     ui/tablegraphics.cpp \
     ui/visualcard.cpp \
     ui/visualhand.cpp
@@ -31,12 +32,14 @@ HEADERS += \
     server/gameengine.h \
     server/server.h \
     server/worker.h \
+    startingwindow.h \
     ui/tablegraphics.h \
     ui/visualcard.h \
     ui/visualhand.h
 
 FORMS += \
-    client/mainwindow.ui
+    client/mainwindow.ui \
+    startingwindow.ui
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

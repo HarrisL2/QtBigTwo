@@ -5,3 +5,7 @@ GameEngine::GameEngine(Server* ser) :
 {
 
 }
+
+void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
+
+}
