@@ -12,7 +12,6 @@ public:
 
     BaseCard::Type getType() const;
     BaseCard::Suit getSuit() const;
-    void cardEffect() const;
     int getNumber() const;
     int getID() const;
 

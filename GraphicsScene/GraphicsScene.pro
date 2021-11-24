@@ -11,8 +11,11 @@ CONFIG += c++11
 SOURCES += \
     client/basecard.cpp \
     client/combination.cpp \
+    client/hand.cpp \
+    client/lobbywindow.cpp \
     client/mainwindow.cpp \
     client/playingcard.cpp \
+    client/unocard.cpp \
     main.cpp \
     server/client.cpp \
     server/gameengine.cpp \
@@ -26,8 +29,11 @@ SOURCES += \
 HEADERS += \
     client/basecard.h \
     client/combination.h \
+    client/hand.h \
+    client/lobbywindow.h \
     client/mainwindow.h \
     client/playingcard.h \
+    client/unocard.h \
     server/client.h \
     server/gameengine.h \
     server/server.h \
@@ -38,6 +44,7 @@ HEADERS += \
     ui/visualhand.h
 
 FORMS += \
+    client/lobbywindow.ui \
     client/mainwindow.ui \
     startingwindow.ui
 # Default rules for deployment.

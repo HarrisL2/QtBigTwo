@@ -47,7 +47,9 @@ void Server::incomingConnection(qintptr handle) {
 
 void Server::readData(Worker* client, const QJsonObject& data) {
     //server specific work here
+    if (data["type"] == "newPlayer") {
 
+    }
 
     emit this->recievedData(client, data);
 }

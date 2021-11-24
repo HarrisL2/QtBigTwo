@@ -14,6 +14,10 @@ Client::Client(QObject* parent) :
 
 void Client::connectToServer(const QHostAddress& adress, quint16 port) {
     socket->connectToHost(adress,port);
+    QJsonObject data;
+    data["type"] = "newPlayer";
+    data["name"] = this->name;
+    this->sendData(data);
 }
 
 void Client::readData() {

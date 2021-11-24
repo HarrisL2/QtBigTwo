@@ -35,6 +35,7 @@ private:
     int numPlayers;
     int numAI;
     QVector<Worker*> clients;
+    QVector<QString> playerNames;
 
     void broadcast(const QJsonObject& data, Worker* exclude = nullptr);
 };
