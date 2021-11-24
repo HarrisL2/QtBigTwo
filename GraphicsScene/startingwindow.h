@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+#include "server/client.h"
+#include "server/server.h"
+
 namespace Ui {
 class StartingWindow;
 }
@@ -19,8 +22,13 @@ private slots:
     void on_CreateRoom_clicked();
     void on_JoinRoom_clicked();
 
+    void clientRecieved(const QJsonObject&);
+    void clientConnectionFailed();
+
 private:
     Ui::StartingWindow *ui;
+    Client* client;
+    Server* server;
 };
 
 #endif // STARTINGWINDOW_H

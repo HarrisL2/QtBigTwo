@@ -27,7 +27,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="RoomLabel">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -40,12 +40,17 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="PlayerListText">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
              <horstretch>0</horstretch>
              <verstretch>5</verstretch>
             </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
            </property>
            <property name="text">
             <string>Show plsyers here</string>
@@ -53,7 +58,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="GameStartButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
              <horstretch>0</horstretch>
@@ -62,7 +67,7 @@
            </property>
            <property name="font">
             <font>
-             <pointsize>14</pointsize>
+             <pointsize>34</pointsize>
             </font>
            </property>
            <property name="text">
@@ -87,7 +92,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QLabel" name="label_6">
+              <widget class="QLabel" name="AIText">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -95,12 +100,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string>Number of AI</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="IncreaseAI">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
                  <horstretch>0</horstretch>
@@ -108,17 +113,22 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>Increase</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_4">
+              <widget class="QLabel" name="AICount">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>6</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>30</pointsize>
+                </font>
                </property>
                <property name="text">
                 <string>TextLabel</string>
@@ -129,7 +139,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="DecreaseAI">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
                  <horstretch>0</horstretch>
@@ -137,7 +147,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>Decrease</string>
                </property>
               </widget>
              </item>
@@ -146,7 +156,7 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <widget class="QLabel" name="label_7">
+              <widget class="QLabel" name="PlayerText">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -154,12 +164,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string>Number of Players</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="IncreasePlayers">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
                  <horstretch>0</horstretch>
@@ -167,17 +177,22 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>Increase</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_5">
+              <widget class="QLabel" name="PlayerCount">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>6</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>30</pointsize>
+                </font>
                </property>
                <property name="text">
                 <string>TextLabel</string>
@@ -188,7 +203,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="DecreasePlayers">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
                  <horstretch>0</horstretch>
@@ -196,7 +211,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>PushButton</string>
+                <string>Decrease</string>
                </property>
               </widget>
              </item>
@@ -205,14 +220,24 @@
           </layout>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="UNOMode">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>UNO mode</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="IPLabel">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
            <property name="text">
             <string>IP Here</string>
            </property>

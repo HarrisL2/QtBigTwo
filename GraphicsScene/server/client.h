@@ -19,6 +19,7 @@ public slots:
     void connectToServer(const QHostAddress& adress, quint16 port);
 signals:
     void dataRecieved(const QJsonObject&);
+    void connectionFailed();
 
 private slots:
     void readData();

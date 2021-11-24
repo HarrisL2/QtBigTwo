@@ -1,7 +1,10 @@
 release/basecard.o
 release/combination.o
+release/hand.o
+release/lobbywindow.o
 release/mainwindow.o
 release/playingcard.o
+release/unocard.o
 release/main.o
 release/client.o
 release/gameengine.o
@@ -12,6 +15,7 @@ release/tablegraphics.o
 release/visualcard.o
 release/visualhand.o
 release/qrc_resources.o
+release/moc_lobbywindow.o
 release/moc_mainwindow.o
 release/moc_client.o
 release/moc_gameengine.o

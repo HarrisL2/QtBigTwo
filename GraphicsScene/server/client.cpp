@@ -3,7 +3,7 @@
 #include <QDataStream>
 #include <QJsonDocument>
 #include <QJsonObject>
-
+#include <QtDebug>
 
 Client::Client(QObject* parent) :
     QObject(parent),
@@ -14,10 +14,15 @@ Client::Client(QObject* parent) :
 
 void Client::connectToServer(const QHostAddress& adress, quint16 port) {
     socket->connectToHost(adress,port);
-    QJsonObject data;
-    data["type"] = "newPlayer";
-    data["name"] = this->name;
-    this->sendData(data);
+    if (socket->state() == QTcpSocket::ConnectedState ||
+        socket->state() == QTcpSocket::ConnectingState ) {
+        QJsonObject data;
+        data["type"] = "newPlayer";
+        data["name"] = this->name;
+        this->sendData(data);
+    } else {
+        emit connectionFailed();
+    }
 }
 
 void Client::readData() {

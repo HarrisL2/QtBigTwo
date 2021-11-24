@@ -4,9 +4,7 @@
 #include "server.h"
 
 Server::Server(QObject* parent) :
-    QTcpServer(parent),
-    numPlayers(4),
-    numAI(0)
+    QTcpServer(parent)
 {
     if (!listen()) {
         close();
@@ -28,16 +26,10 @@ quint16 Server::getPort() const {return port;}
 QString Server::getIP() const {return ip;}
 
 void Server::incomingConnection(qintptr handle) {
+    qDebug() << "connected";
     Worker* worker = new Worker(this);
     if (!worker->setSocketDescriptor(handle)) {
         worker->deleteLater();
-        return;
-    }
-    if (clients.size() >= numPlayers) {
-        QJsonObject msg;
-        msg["type"] = "full";
-        worker->sendData(msg);
-        connect(worker, &Worker::clientDisconnected, this, std::bind(&Server::clientDisconnected, this, worker));
         return;
     }
     connect(worker, &Worker::dataRecieved, this, std::bind(&Server::readData, this, worker, std::placeholders::_1));
@@ -48,7 +40,19 @@ void Server::incomingConnection(qintptr handle) {
 void Server::readData(Worker* client, const QJsonObject& data) {
     //server specific work here
     if (data["type"] == "newPlayer") {
+        QString newName = data["name"].toString();
+        if (!playerNames.contains(newName)) {
+            playerNames.append(newName);
 
+            QJsonObject newData;
+            newData["type"] = "nameList";
+            newData["list"] = playerNames;
+            broadcast(newData);
+        } else {
+            QJsonObject newData;
+            newData["type"] = "repeatedName";
+            client->sendData(newData);
+        }
     }
 
     emit this->recievedData(client, data);
@@ -65,4 +69,8 @@ void Server::broadcast(const QJsonObject &data, Worker *exclude) {
             clients[i]->sendData(data);
         }
     }
+}
+
+QJsonArray Server::getPlayerNames() const {
+    return playerNames;
 }

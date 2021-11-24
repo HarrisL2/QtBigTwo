@@ -2,6 +2,7 @@
 #define SERVER_H
 
 #include <QTcpServer>
+#include <QJsonArray>
 
 #include "worker.h"
 
@@ -14,10 +15,8 @@ public:
 
     quint16 getPort() const;
     QString getIP() const;
-    void setNumPlayers(int);
-    void setNumAI(int);
-    int getNumPlayers() const;
-    int getNumAI() const;
+    QJsonArray getPlayerNames() const;
+
 signals:
     void recievedData(Worker* client, const QJsonObject& data);
 
@@ -32,10 +31,8 @@ protected:
 private:
     quint16 port;
     QString ip;
-    int numPlayers;
-    int numAI;
     QVector<Worker*> clients;
-    QVector<QString> playerNames;
+    QJsonArray playerNames;
 
     void broadcast(const QJsonObject& data, Worker* exclude = nullptr);
 };

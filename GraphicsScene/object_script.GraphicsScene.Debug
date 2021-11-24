@@ -1,7 +1,10 @@
 debug/basecard.o
 debug/combination.o
+debug/hand.o
+debug/lobbywindow.o
 debug/mainwindow.o
 debug/playingcard.o
+debug/unocard.o
 debug/main.o
 debug/client.o
 debug/gameengine.o
@@ -12,6 +15,7 @@ debug/tablegraphics.o
 debug/visualcard.o
 debug/visualhand.o
 debug/qrc_resources.o
+debug/moc_lobbywindow.o
 debug/moc_mainwindow.o
 debug/moc_client.o
 debug/moc_gameengine.o
