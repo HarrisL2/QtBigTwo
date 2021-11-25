@@ -1,4 +1,5 @@
 release/basecard.o
+release/clientlogic.o
 release/combination.o
 release/hand.o
 release/lobbywindow.o
@@ -15,6 +16,7 @@ release/tablegraphics.o
 release/visualcard.o
 release/visualhand.o
 release/qrc_resources.o
+release/moc_clientlogic.o
 release/moc_lobbywindow.o
 release/moc_mainwindow.o
 release/moc_client.o
@@ -22,3 +24,6 @@ release/moc_gameengine.o
 release/moc_server.o
 release/moc_worker.o
 release/moc_startingwindow.o
+release/moc_tablegraphics.o
+release/moc_visualcard.o
+release/moc_visualhand.o

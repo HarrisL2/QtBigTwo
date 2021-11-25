@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     client/basecard.cpp \
+    client/clientlogic.cpp \
     client/combination.cpp \
     client/hand.cpp \
     client/lobbywindow.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 
 HEADERS += \
     client/basecard.h \
+    client/clientlogic.h \
     client/combination.h \
     client/hand.h \
     client/lobbywindow.h \

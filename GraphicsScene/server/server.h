@@ -16,6 +16,8 @@ public:
     quint16 getPort() const;
     QString getIP() const;
     QJsonArray getPlayerNames() const;
+    void sendDataTo(QString name, const QJsonObject& data);
+    void broadcast(const QJsonObject& data, Worker* exclude = nullptr);
 
 signals:
     void recievedData(Worker* client, const QJsonObject& data);
@@ -34,7 +36,6 @@ private:
     QVector<Worker*> clients;
     QJsonArray playerNames;
 
-    void broadcast(const QJsonObject& data, Worker* exclude = nullptr);
 };
 
 #endif // SERVER_H

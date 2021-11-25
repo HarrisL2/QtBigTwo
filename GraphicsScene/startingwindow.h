@@ -21,6 +21,7 @@ public:
 private slots:
     void on_CreateRoom_clicked();
     void on_JoinRoom_clicked();
+    void on_CreditsButton_clicked();
 
     void clientRecieved(const QJsonObject&);
     void clientConnectionFailed();

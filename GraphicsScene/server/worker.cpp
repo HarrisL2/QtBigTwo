@@ -21,6 +21,9 @@ void Worker::readData() {
     stream.setVersion(QDataStream::Qt_5_12);
     stream >> rawData;
     const QJsonDocument data = QJsonDocument::fromJson(rawData);
+    if (data["type"] == "newPlayer") {
+        name = data["name"].toString();
+    }
 
     emit dataRecieved(data.object());
 }

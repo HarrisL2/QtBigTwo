@@ -61,6 +61,9 @@ void StartingWindow::on_JoinRoom_clicked() {
     }
 }
 
+void StartingWindow::on_CreditsButton_clicked() {
+
+}
 
 void StartingWindow::clientRecieved(const QJsonObject& data) {
     qDebug() << data["type"];

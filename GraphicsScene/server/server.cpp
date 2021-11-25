@@ -74,3 +74,12 @@ void Server::broadcast(const QJsonObject &data, Worker *exclude) {
 QJsonArray Server::getPlayerNames() const {
     return playerNames;
 }
+
+
+void Server::sendDataTo(QString name, const QJsonObject& data) {
+    for (int i = 0; i < clients.size(); i++) {
+        if (clients[i]->getName() == name) {
+            clients[i]->sendData(data);
+        }
+    }
+}

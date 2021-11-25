@@ -13,7 +13,7 @@ class GameEngine : public QObject
     Q_OBJECT
 
 public:
-    GameEngine(Server* ser);
+    GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, QObject* parent);
     void updateClients();
 
 public slots:
@@ -21,10 +21,18 @@ public slots:
 
 private:
     Server* server;
+    int AICount, playerCount;
+    bool UNOMode;
+    QJsonArray playerNames;
+    QVector<BaseCard*> deck;
     QVector<Combination*> stack;
-    QString currentPlayer;
     QJsonObject playerHands;
     QJsonObject lastPlays;
+    QJsonArray::iterator currentPlayer;
+    QJsonArray::iterator nextPlayer;
+    int turnDirection;
+
+    void updateAll();
 };
 
 #endif // GAMEENGINE_H

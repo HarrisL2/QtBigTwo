@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "../ui/tablegraphics.h"
+#include "clientlogic.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,12 +15,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(Client* client, QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void updateScene();
 
 private:
     Ui::MainWindow *ui;
     TableGraphics* scene;
+    ClientLogic* logic;
 
     void resizeEvent(QResizeEvent*);
 };

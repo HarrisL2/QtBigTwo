@@ -1,4 +1,5 @@
 debug/basecard.o
+debug/clientlogic.o
 debug/combination.o
 debug/hand.o
 debug/lobbywindow.o
@@ -15,6 +16,7 @@ debug/tablegraphics.o
 debug/visualcard.o
 debug/visualhand.o
 debug/qrc_resources.o
+debug/moc_clientlogic.o
 debug/moc_lobbywindow.o
 debug/moc_mainwindow.o
 debug/moc_client.o
@@ -22,3 +24,6 @@ debug/moc_gameengine.o
 debug/moc_server.o
 debug/moc_worker.o
 debug/moc_startingwindow.o
+debug/moc_tablegraphics.o
+debug/moc_visualcard.o
+debug/moc_visualhand.o

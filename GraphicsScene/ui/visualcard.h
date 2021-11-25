@@ -6,12 +6,17 @@
 
 class VisualCard : public QGraphicsPixmapItem
 {
+
 public:
-    explicit VisualCard(int, QGraphicsItem *parent);
-    void setCard(int);
+    explicit VisualCard(int, bool clickable, QGraphicsItem *parent);
+    int getID() const;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    bool isSelected() const;
 
 private:
+    int id;
+    bool clickable;
+    bool selected;
 };
 
 #endif // VISUALCARD_H
