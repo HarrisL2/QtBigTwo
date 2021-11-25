@@ -55,6 +55,10 @@ void MainWindow::updateScene() {
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Space) {
         QVector<int> selected = scene->getNextPlay();
+        Combination* play = Combination::createCombination(selected);
+        if (play) {
+
+        }
     }
 }
 
