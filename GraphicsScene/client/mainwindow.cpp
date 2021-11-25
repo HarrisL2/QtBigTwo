@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "combination.h"
+
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QPixmap>
@@ -47,6 +49,12 @@ void MainWindow::updateScene() {
         scene->changeHand(2, it->toArray());
         if (++it == hands.end()) it = hands.begin();
         scene->changeHand(3, it->toArray());
+    }
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Space) {
+        QVector<int> selected = scene->getNextPlay();
     }
 }
 

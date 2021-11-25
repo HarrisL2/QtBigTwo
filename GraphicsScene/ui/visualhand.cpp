@@ -33,9 +33,9 @@ void VisualHand::addCard(int id) {
 void VisualHand::removeCard(int id) {
     for (int i = 0; i < cards.size(); i++) {
         if (cards[i]->getID() == id) {
+            cards[i]->hide();
             delete cards[i];
             cards.removeAt(i);
-            break;
         }
     }
     renderHand();
@@ -94,6 +94,11 @@ void VisualHand::renderHand() {
             cards[i]->setPos(cardDistance*i,0);
         }
     }
+}
+
+void VisualHand::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    QGraphicsItem::mousePressEvent(event);
+    qDebug() << "cliked";
 }
 
 void VisualHand::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {

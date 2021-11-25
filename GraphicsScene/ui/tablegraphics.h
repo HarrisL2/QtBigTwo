@@ -16,6 +16,7 @@ public:
     void resizeEvent(QResizeEvent* event);
 
     void changeHand(int, const QJsonArray&);
+    QVector<int> getNextPlay();
 
 
 private:

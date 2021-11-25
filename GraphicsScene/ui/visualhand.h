@@ -22,7 +22,7 @@ public:
     bool hasCard(int);
     QVector<int> getSelected();
     QVector<int> getCards();
-    //void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void resizeEvent(
             int HAND_WIDTH, int HAND_HEIGHT,
             int CARD_WIDTH, int CARD_HEIGHT,

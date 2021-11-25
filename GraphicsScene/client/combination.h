@@ -7,7 +7,7 @@
 class Combination
 {
 public:
-    enum class TYPE {
+    enum class Type {
         SINGLE,
         PAIR,
         TRIPLE,
@@ -18,14 +18,15 @@ public:
         STRAIGHT_FLUSH
     };
 
-    static Combination* createCombination(QVector<BaseCard*>);
+    static Combination* createCombination(QVector<int>);
 
     QVector<BaseCard*> getCards() const;
     int size() const;
 
 
 private:
-    Combination(QVector<BaseCard*>);
+    Combination(QVector<BaseCard*>, Type);
+    Type type;
     QVector<BaseCard*> cards;
 };
 

@@ -2,7 +2,6 @@
 #include "visualcard.h"
 #include "QGraphicsSceneMouseEvent"
 
-#include <QObject>
 #include <QtDebug>
 
 TableGraphics::TableGraphics() :
@@ -50,6 +49,10 @@ void TableGraphics::mousePressEvent(QGraphicsSceneMouseEvent *event) {
                     ", "+
                     QString::number(event->scenePos().y()));
     }
+}
+
+QVector<int> TableGraphics::getNextPlay() {
+    return lastPlays[0]->getCards();
 }
 
 void TableGraphics::resizeEvent(QResizeEvent* event) {

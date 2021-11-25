@@ -18,6 +18,8 @@ public:
     MainWindow(Client* client, QWidget *parent = nullptr);
     ~MainWindow();
 
+    void keyPressEvent(QKeyEvent *event);
+
 private slots:
     void updateScene();
 
