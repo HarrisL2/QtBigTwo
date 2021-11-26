@@ -16,6 +16,8 @@ public:
     void resizeEvent(QResizeEvent* event);
 
     void changeHand(int, const QJsonArray&);
+    void setName(int, QString);
+    void setCount(int, QString);
     QVector<int> getNextPlay();
 
 
@@ -25,6 +27,8 @@ private:
 
     QVector<VisualHand*> hands;
     QVector<VisualHand*> lastPlays;
+    QVector<QGraphicsTextItem*> nameLabels;
+    QVector<QGraphicsTextItem*> countLabels;
     QGraphicsTextItem* debugLabel;
 
 };

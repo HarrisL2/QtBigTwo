@@ -14,7 +14,7 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
 {
     playerNames = server->getPlayerNames();
     for (int i = 0; i < AICount; i++) {
-        playerNames.append("AI"+QString::number(i+1));
+        playerNames.append("AI "+QString::number(i+1));
     }
     for (int i = 1; i <= 52; i++) {
         deck.append(new PlayingCard(i));
@@ -88,7 +88,25 @@ QVector<int> GameEngine::getSingle(Hand hand, BaseCard* lastCard) const {
 }
 
 QVector<int> GameEngine::getPair(Hand hand, Combination lastPlay) const {
+    for (int i = lastPlay.getLastCard()->getNumber(); ; i++) {
+        if (i == 14) {
+            i = 1;
+        }
+        if (hand.numNum(i) >= 2) {
+            QVector<BaseCard*> targets;
+            for (int j = 0; j < hand.getCards().size() ; j++) {
+                BaseCard* card = hand.getCards()[j];
+                if (card->getNumber() == i) {
+                    targets.append(card);
+                }
+            }
+        }
 
+
+        if (i == 2) {
+            break;
+        }
+    }
 }
 
 Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) const {
@@ -101,7 +119,7 @@ Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) const {
         return Combination::createCombination(getSingle(hand, lastCard));
     }
     else if (currentCom == Combination::Type::PAIR) {
-
+        return Combination::createCombination(getPair(hand, lastPlay));
     }
     else if (currentCom == Combination::Type::TRIPLE) {
 
@@ -131,10 +149,18 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
             } else if (cards[i]->getEffect() == BaseCard::Effect::DRAWTWO) {
                 playerDraw(nextPlayer->toString());
                 playerDraw(nextPlayer->toString());
+                advanceNextPlayer();
             }
         }
+
         if (play.size() > 0) {
             lastPlayer = currentPlayer;
+        }
+        if (nextPlayer == lastPlayer) {
+            for (int i = 0; i < playerNames.size(); i++) {
+                QJsonArray empty;
+                lastPlays[playerNames[i].toString()] = empty;
+            }
         }
         currentPlayer = nextPlayer;
         advanceNextPlayer();
@@ -160,6 +186,7 @@ void GameEngine::updateAll() {
     for (int i = 0; i < playerNames.size(); i++) {
         QJsonObject data;
         data["type"] = "gameInfo";
+        data["players"] = playerNames;
         data["deckSize"] = deck.size();
         QJsonArray jsonStack;
         for (int j = 0; j < stack.size(); j++) {

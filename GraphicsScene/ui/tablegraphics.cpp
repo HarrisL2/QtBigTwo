@@ -19,6 +19,10 @@ TableGraphics::TableGraphics() :
         lastPlays.append(new VisualHand(WIDTH*0.6, HEIGHT*0.2, CARD_WIDTH, CARD_HEIGHT,
                                         QVector<int>(0),false));
         this->addItem(lastPlays[i]);
+        nameLabels.append(new QGraphicsTextItem());
+        this->addItem(nameLabels[i]);
+        countLabels.append(new QGraphicsTextItem());
+        this->addItem(countLabels[i]);
     }
     this->addItem(debugLabel);
     debugLabel->setPos(0,0);
@@ -27,6 +31,22 @@ TableGraphics::TableGraphics() :
 
 void TableGraphics::changeHand(int i, const QJsonArray& ids) {
     hands[i]->changeHand(ids);
+    int UNOCount = 0, PokerCount = 0;
+    if (i != 0) {
+        for (int i = 0; i < ids.size(); i++) {
+            if (ids[i] == 0) PokerCount++;
+            else UNOCount++;
+        }
+        setCount(i,QString::number(UNOCount)+" UNO\n"+QString::number(PokerCount)+" Poker");
+    }
+}
+
+void TableGraphics::setName(int i, QString name) {
+    nameLabels[i]->setPlainText(name);
+}
+
+void TableGraphics::setCount(int i, QString text) {
+    countLabels[i]->setPlainText(text);
 }
 
 void TableGraphics::mousePressEvent(QGraphicsSceneMouseEvent *event) {
@@ -81,8 +101,22 @@ void TableGraphics::resizeEvent(QResizeEvent* event) {
     hands[3]->setPos(CARD_HEIGHT*0.6,HEIGHT*0.2);
     hands[3]->resizeEvent(HEIGHT*0.6,WIDTH*0.2,CARD_WIDTH,CARD_HEIGHT,event);
 
-    lastPlays[0]->setPos(WIDTH*0.4,HEIGHT-CARD_HEIGHT*1.2);
+    lastPlays[0]->setPos(WIDTH*0.4,HEIGHT-CARD_HEIGHT*1.3);
     lastPlays[0]->resizeEvent(WIDTH*0.2,HEIGHT*0.2,CARD_WIDTH*0.5,CARD_HEIGHT*0.5,event);
+    lastPlays[1]->setPos(WIDTH*0.75,HEIGHT*0.5-CARD_HEIGHT*0.25);
+    lastPlays[1]->resizeEvent(WIDTH*0.15,HEIGHT*0.2,CARD_WIDTH*0.5,CARD_HEIGHT*0.5,event);
+    lastPlays[2]->setPos(WIDTH*0.425,CARD_HEIGHT*0.75);
+    lastPlays[2]->resizeEvent(WIDTH*0.15,HEIGHT*0.2,CARD_WIDTH*0.5,CARD_HEIGHT*0.5,event);
+    lastPlays[3]->setPos(WIDTH*0.1,HEIGHT*0.5-CARD_HEIGHT*0.25);
+    lastPlays[3]->resizeEvent(WIDTH*0.15,HEIGHT*0.2,CARD_WIDTH*0.5,CARD_HEIGHT*0.5,event);
+
+    nameLabels[1]->setPos(WIDTH*0.92,HEIGHT*0.15);
+    nameLabels[2]->setPos(WIDTH*0.1,HEIGHT*0.06);
+    nameLabels[3]->setPos(WIDTH*0.03,HEIGHT*0.15);
+
+    countLabels[1]->setPos(WIDTH*0.92,HEIGHT*0.85);
+    countLabels[2]->setPos(WIDTH*0.85,HEIGHT*0.04);
+    countLabels[3]->setPos(WIDTH*0.03,HEIGHT*0.85);
 
     debugLabel->setPlainText(
                 QString::number( event->size().width())+

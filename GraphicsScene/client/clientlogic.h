@@ -21,6 +21,7 @@ public:
     QJsonObject getHands() const;
     bool waitingForPlay() const;
     void processPlay(QVector<int>);
+    QJsonArray getNames() const;
 
 signals:
     void dataChanged();
@@ -33,7 +34,9 @@ private:
     QString name;
     int turnDir;
     QVector<Combination*> stack;
+    QJsonArray playerNames;
     QJsonObject playerHands;
+    QJsonObject lastPlays;
     QString lastPlayer;
     QString currentPlayer;
 };

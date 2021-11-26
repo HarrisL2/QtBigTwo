@@ -16,16 +16,22 @@ ClientLogic::ClientLogic(Client* client) :
 void ClientLogic::recieveData(const QJsonObject& data) {
     qDebug() << data;
     if (data["type"] == "gameInfo") {
+        playerNames = data["players"].toArray();
         currentPlayer = data["currPlayer"].toString();
         lastPlayer = data["lastPlater"].toString();
         playerHands = data["hands"].toObject();
         turnDir = data["turnDir"].toInt();
+        lastPlays = data["lastPlays"].toObject();
     }
     emit dataChanged();
 }
 
 QString ClientLogic::getName() const {
     return name;
+}
+
+QJsonArray ClientLogic::getNames() const {
+    return playerNames;
 }
 
 QJsonObject ClientLogic::getHands() const {
@@ -58,6 +64,35 @@ void ClientLogic::processPlay(QVector<int> input) {
                 }
                 data["play"] = play;
                 client->sendData(data);
+            }
+        } else {
+            QJsonArray tempComb = lastPlays[lastPlayer].toArray();
+            QVector<int> combInts;
+            for (int i = 0; i < tempComb.size(); i++) {
+                combInts.append(tempComb[i].toInt());
+            }
+            Combination* lastComb = Combination::createCombination(combInts);
+            if (comb->getType() == Combination::Type::PASS) {
+                QJsonObject data;
+                data["type"] = "newPlay";
+                QJsonArray play;
+                QVector<BaseCard*> cards = comb->getCards();
+                for (int i = 0; i < cards.size(); i++) {
+                    play.append(cards[i]->getID());
+                }
+                data["play"] = play;
+                client->sendData(data);
+            } else if (lastComb->size() != comb->size()) {
+                QMessageBox msg;
+                msg.setText("Play type does not match previous.");
+                msg.exec();
+            } if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO &&
+                (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor())) {
+                QMessageBox msg;
+                msg.setText("Play color does not match previous.");
+                msg.exec();
+            } else {
+
             }
         }
     }
