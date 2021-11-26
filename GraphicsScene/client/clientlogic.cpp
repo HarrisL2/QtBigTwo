@@ -18,7 +18,7 @@ void ClientLogic::recieveData(const QJsonObject& data) {
     if (data["type"] == "gameInfo") {
         playerNames = data["players"].toArray();
         currentPlayer = data["currPlayer"].toString();
-        lastPlayer = data["lastPlater"].toString();
+        lastPlayer = data["lastPlayer"].toString();
         playerHands = data["hands"].toObject();
         turnDir = data["turnDir"].toInt();
         lastPlays = data["lastPlays"].toObject();
@@ -38,6 +38,10 @@ QJsonObject ClientLogic::getHands() const {
     return playerHands;
 }
 
+QJsonObject ClientLogic::getLastPlays() const {
+    return lastPlays;
+}
+
 void ClientLogic::processPlay(QVector<int> input) {
     Combination* comb = Combination::createCombination(input);
     if (!waitingForPlay()) {
@@ -55,15 +59,7 @@ void ClientLogic::processPlay(QVector<int> input) {
                 msg.setText("Cannot pass.");
                 msg.exec();
             } else {
-                QJsonObject data;
-                data["type"] = "newPlay";
-                QJsonArray play;
-                QVector<BaseCard*> cards = comb->getCards();
-                for (int i = 0; i < cards.size(); i++) {
-                    play.append(cards[i]->getID());
-                }
-                data["play"] = play;
-                client->sendData(data);
+                sendPlay(comb);
             }
         } else {
             QJsonArray tempComb = lastPlays[lastPlayer].toArray();
@@ -73,29 +69,33 @@ void ClientLogic::processPlay(QVector<int> input) {
             }
             Combination* lastComb = Combination::createCombination(combInts);
             if (comb->getType() == Combination::Type::PASS) {
-                QJsonObject data;
-                data["type"] = "newPlay";
-                QJsonArray play;
-                QVector<BaseCard*> cards = comb->getCards();
-                for (int i = 0; i < cards.size(); i++) {
-                    play.append(cards[i]->getID());
-                }
-                data["play"] = play;
-                client->sendData(data);
+                sendPlay(comb);
             } else if (lastComb->size() != comb->size()) {
                 QMessageBox msg;
                 msg.setText("Play type does not match previous.");
                 msg.exec();
-            } if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO &&
+            } if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO && comb->getFirstCard()->getType() == BaseCard::Type::UNO &&
                 (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor())) {
                 QMessageBox msg;
                 msg.setText("Play color does not match previous.");
                 msg.exec();
             } else {
-
+                sendPlay(comb);
             }
         }
     }
+}
+
+void ClientLogic::sendPlay(Combination* comb) {
+    QJsonObject data;
+    data["type"] = "newPlay";
+    QJsonArray play;
+    QVector<BaseCard*> cards = comb->getCards();
+    for (int i = 0; i < cards.size(); i++) {
+        play.append(cards[i]->getID());
+    }
+    data["play"] = play;
+    client->sendData(data);
 }
 
 bool ClientLogic::waitingForPlay() const {

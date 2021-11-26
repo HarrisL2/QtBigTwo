@@ -22,6 +22,7 @@ public:
     bool waitingForPlay() const;
     void processPlay(QVector<int>);
     QJsonArray getNames() const;
+    QJsonObject getLastPlays() const;
 
 signals:
     void dataChanged();
@@ -39,6 +40,8 @@ private:
     QJsonObject lastPlays;
     QString lastPlayer;
     QString currentPlayer;
+
+    void sendPlay(Combination*);
 };
 
 #endif // CLIENTLOGIC_H

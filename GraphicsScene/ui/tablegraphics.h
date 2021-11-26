@@ -18,6 +18,7 @@ public:
     void changeHand(int, const QJsonArray&);
     void setName(int, QString);
     void setCount(int, QString);
+    void setLastPlay(int i, const QJsonArray& ids);
     QVector<int> getNextPlay();
 
 

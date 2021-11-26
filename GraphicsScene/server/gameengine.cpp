@@ -49,6 +49,7 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
     nextPlayer = currentPlayer+1 == playerNames.end() ? playerNames.begin() : currentPlayer+1;
     turnDirection = 1;
     updateAll();
+    connect(server, &Server::recievedData, this, &GameEngine::recieveData);
 }
 
 bool GameEngine::canPlay(BaseCard* lastCard, BaseCard* handCard) const {

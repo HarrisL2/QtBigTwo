@@ -41,6 +41,10 @@ void TableGraphics::changeHand(int i, const QJsonArray& ids) {
     }
 }
 
+void TableGraphics::setLastPlay(int i, const QJsonArray& ids) {
+    lastPlays[i]->changeHand(ids);
+}
+
 void TableGraphics::setName(int i, QString name) {
     nameLabels[i]->setPlainText(name);
 }
