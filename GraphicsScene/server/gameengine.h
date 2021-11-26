@@ -37,7 +37,8 @@ private:
     void advanceNextPlayer();
     void playerDraw(QString);
     void updateAll();
-    Combination* getAIMove(Hand, Combination);
+    Combination* getAIMove(Hand, Combination) const;
+    QVector<int> getSingle(Hand, BaseCard*, BaseCard::Type, int, QVector<BaseCard*>) const;
 };
 
 #endif // GAMEENGINE_H

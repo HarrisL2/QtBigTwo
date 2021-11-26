@@ -51,8 +51,74 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
     updateAll();
 }
 
-Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) {
+QVector<int> GameEngine::getSingle(Hand hand, BaseCard* lastCard, BaseCard::Type lastType, int lastNum, QVector<BaseCard*> cardInHand) const {
+//    int j = lastNum, boundary;
+//    if (lastNum > 2) {
+//        boundary = 13;
+//    } else {
+//        boundary = 2;
+//    }
+//    for (; j <= boundary; ++j) { //check from small num
+//        if (hand.numNum(j) > 0) { //have that num
+//            for (int i = 0; i < cardInHand.size(); ++i) {
+//                if (cardInHand[i]->getNumber() == j) { //find that num in hand
+//                    BaseCard* card = cardInHand[i];
+//                    if (lastType != card->getType()) {
+//                        QVector<int> temp;
+//                        temp.append(card->getID());
+//                        return temp;
+//                    } else if (card->getType() == BaseCard::Type::UNO && card->getColor() == lastCard->getColor()) {
+//                        QVector<int> temp;
+//                        temp.append(card->getID());
+//                        return temp;
+//                    } else if (card->getType() == BaseCard::Type::PLAYING) {
+//                        QVector<int> temp;
+//                        temp.append(card->getID());
+//                        return temp;
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    if (boundary == 13) {
+//        return getSingle(hand, lastCard, lastType, 1, cardInHand);
+//    }
+//    return QVector<int>(0);
+    bool notUNO = false;
+    BaseCard* cardToPlay = nullptr;
+    QVector<BaseCard*> cards = hand.getCards();
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getType() == BaseCard::Type::PLAYING &&
+                cards[i]->getID() > (lastCard->getType() == BaseCard::Type::UNO ? lastCard->getID()-100 : lastCard->getID())) {
+            if (cardToPlay == nullptr || cards[i]->getID() < cardToPlay->getID()) {
+                cardToPlay = cards[i];
+                notUNO = true;
+            }
+        } else {
 
+        }
+    }
+}
+
+Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) const {
+    Combination::Type currentCom = lastPlay.getType();
+    BaseCard* lastCard = lastPlay.getLastCard();
+    BaseCard::Type lastType = lastCard->getType(); //UNO or playingcard
+    int lastNum = lastCard->getNumber();
+    QVector<BaseCard*> cardInHand = hand.getCards();
+    if (currentCom == Combination::Type::SINGLE) {
+        return Combination::createCombination(getSingle(hand, lastCard, lastType, lastNum, cardInHand));
+    }
+    else if (currentCom == Combination::Type::PAIR) {
+
+    }
+    else if (currentCom == Combination::Type::TRIPLE) {
+
+    }
+    else {
+
+    }
+    return Combination::createCombination(QVector<int>(0));
 }
 
 void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
