@@ -16,14 +16,38 @@ Hand::Hand(const QVector<int>& ids) : cards(QVector<BaseCard*>(0)) {
             cards.append(new UNOCard(ids[i]));
         }
     }
+    sort();
 }
 
 void Hand::addCard(BaseCard* card) {
     cards.append(card);
+    sort();
 }
 
 void Hand::removeCard(BaseCard* card) {
     cards.removeOne(card);
+}
+
+void Hand::sort() {
+    for (int i = 0; i < cards.size(); i++){
+        for (int j = i; j < cards.size(); j++){
+            if (cards[j]->getID() < cards[i]->getID()){
+                BaseCard* temp = cards[j];
+                cards[j] = cards[i];
+                cards[i] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < cards.size(); i++){
+        for (int j = i; j < cards.size(); j++){
+            if ((cards[j]->getNumber() < 3 ?  cards[j]->getNumber() + 13 : cards[j]->getNumber()) <
+                    (cards[i]->getNumber() < 3 ?  cards[i]->getNumber() + 13 : cards[i]->getNumber())){
+                BaseCard* temp = cards[j];
+                cards[j] = cards[i];
+                cards[i] = temp;
+            }
+        }
+    }
 }
 
 int Hand::numCards() const {

@@ -14,6 +14,7 @@ public:
 
     void addCard(BaseCard*);
     void removeCard(BaseCard*);
+    void sort();
 
     int numCards() const;
     int numType(BaseCard::Type) const;
