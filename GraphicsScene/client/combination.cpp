@@ -142,6 +142,10 @@ BaseCard* Combination::getLastCard() const {
     return cards.back();
 }
 
+Combination::Type Combination::getType() const {
+    return type;
+}
+
 int Combination::size() const {
     return cards.size();
 }
