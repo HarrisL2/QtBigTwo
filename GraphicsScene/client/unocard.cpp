@@ -2,7 +2,7 @@
 
 UNOCard::UNOCard(int id) :
     ID(id),
-    number((id-100)/4 + 3 > 13 ? (id-100)/4 - 10: (id-100)/4 + 3), \
+    number((id-101)/4 + 3 > 13 ? (id-101)/4 - 10: (id-101)/4 + 3), \
     color(static_cast<BaseCard::Color>( (id-100)%4 == 0? 4 : (id-100)%4 ))
 {
 

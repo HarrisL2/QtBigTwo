@@ -205,6 +205,7 @@ public:
         QFont font3;
         font3.setPointSize(14);
         UNOMode->setFont(font3);
+        UNOMode->setChecked(true);
 
         verticalLayout_3->addWidget(UNOMode);
 

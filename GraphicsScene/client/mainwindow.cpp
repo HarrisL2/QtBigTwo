@@ -1,11 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "combination.h"
 
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
+#include <QMessageBox>
 
 #include "../ui/tablegraphics.h"
 
@@ -54,11 +54,7 @@ void MainWindow::updateScene() {
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Space) {
-        QVector<int> selected = scene->getNextPlay();
-        Combination* play = Combination::createCombination(selected);
-        if (play) {
-
-        }
+        logic->processPlay(scene->getNextPlay());
     }
 }
 

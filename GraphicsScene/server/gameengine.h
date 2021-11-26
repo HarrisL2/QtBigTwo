@@ -28,10 +28,13 @@ private:
     QVector<Combination*> stack;
     QJsonObject playerHands;
     QJsonObject lastPlays;
+    QJsonArray::iterator lastPlayer;
     QJsonArray::iterator currentPlayer;
     QJsonArray::iterator nextPlayer;
     int turnDirection;
 
+    void advanceNextPlayer();
+    void playerDraw(QString);
     void updateAll();
 };
 

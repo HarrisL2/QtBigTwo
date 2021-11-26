@@ -2,7 +2,7 @@
 
 PlayingCard::PlayingCard(int id) :
     ID(id),
-    number(id/4 + 3 > 13 ? id/4 - 10: id/4 + 3)
+    number((id-1)/4 + 3 > 13 ? (id-1)/4 - 10: (id-1)/4 + 3)
 {
     suit = static_cast<BaseCard::Suit>( id%4 == 0? 4 : id%4 );
 }

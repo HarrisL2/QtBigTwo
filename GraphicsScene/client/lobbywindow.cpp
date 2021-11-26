@@ -17,7 +17,7 @@ LobbyWindow::LobbyWindow(Client* client,
     playerNames(playerNames),
     playerName(playerName),
     maxPlayerCount(1),
-    maxAICount(2),
+    maxAICount(3),
     server(server),
     client(client)
 {

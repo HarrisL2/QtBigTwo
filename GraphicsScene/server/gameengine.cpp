@@ -37,18 +37,62 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
             newHand.append(temp->getID());
         }
         playerHands[playerNames[i].toString()] = newHand;
+
+        QJsonArray newPlay;
+        lastPlays[playerNames[i].toString()] = newPlay;
     }
     currentPlayer = playerNames.begin();
     for (int i = 0; i < int(playerNames.size()*QRandomGenerator::global()->generateDouble()); i++) {
         currentPlayer++;
     }
+    lastPlayer = currentPlayer;
     nextPlayer = currentPlayer+1 == playerNames.end() ? playerNames.begin() : currentPlayer+1;
     turnDirection = 1;
     updateAll();
 }
 
 void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
+    assert(sender->getName() == currentPlayer->toString());
+    if (data["type"].toString() == "newPlay") {
+        lastPlays[currentPlayer->toString()] = data["play"];
+        QJsonArray play = data["play"].toArray();
+        QVector<BaseCard*> cards;
+        for (int i = 0; i < play.size(); i++) {
+            if (play[i].toInt() < 99) {
+                cards.append(new PlayingCard(play[i].toInt()));
+            } else {
+                cards.append(new UNOCard(play[i].toInt()));
+            }
+            if (cards[i]->getEffect() == BaseCard::Effect::REVERSE) {
+                turnDirection *= -1;
+            } else if (cards[i]->getEffect() == BaseCard::Effect::SKIP) {
+                advanceNextPlayer();
+            } else if (cards[i]->getEffect() == BaseCard::Effect::DRAWTWO) {
+                playerDraw(nextPlayer->toString());
+                playerDraw(nextPlayer->toString());
+            }
+        }
+        if (play.size() > 0) {
+            lastPlayer = currentPlayer;
+        }
+        currentPlayer = nextPlayer;
+        advanceNextPlayer();
+        updateAll();
+    }
+}
 
+void GameEngine::advanceNextPlayer() {
+    if (turnDirection == 1) {
+        nextPlayer = nextPlayer+1 == playerNames.end() ? playerNames.begin() : nextPlayer+1;
+    } else if (turnDirection == -1) {
+        nextPlayer = nextPlayer == playerNames.begin() ? playerNames.end()-1 : nextPlayer-1;
+    }
+}
+
+void GameEngine::playerDraw(QString player) {
+    QJsonArray tempHand = playerHands[player].toArray();
+    tempHand.append(deck.takeLast()->getID());
+    playerHands[player] = tempHand;
 }
 
 void GameEngine::updateAll() {
@@ -80,7 +124,9 @@ void GameEngine::updateAll() {
             }
         }
         data["hands"] = tempHands;
+        data["lastPlays"] = lastPlays;
         data["currPlayer"] = *currentPlayer;
+        data["lastPlayer"] = *lastPlayer;
         data["turnDir"] = turnDirection;
         server->sendDataTo(playerNames[i].toString(),data);
     }

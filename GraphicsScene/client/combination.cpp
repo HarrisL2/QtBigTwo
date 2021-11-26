@@ -11,6 +11,9 @@ Combination* Combination::createCombination(QVector<int> ids) {
             cards.append(new UNOCard(ids[i]));
         }
     }
+    if (cards.size() == 0) {
+        return new Combination(cards, Combination::Type::PASS);
+    }
     if (cards.size() <= 5 && cards.size() >= 1) {
         if (cards.size() == 1) {
             return new Combination(cards, Combination::Type::SINGLE);
@@ -38,6 +41,14 @@ Combination::Combination(QVector<BaseCard*> cards, Type type) :
 
 QVector<BaseCard*> Combination::getCards() const {
     return cards;
+}
+
+BaseCard* Combination::getFirstCard() const {
+    return cards.first();
+}
+
+BaseCard* Combination::getLastCard() const {
+    return cards.back();
 }
 
 int Combination::size() const {

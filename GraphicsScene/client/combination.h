@@ -8,6 +8,7 @@ class Combination
 {
 public:
     enum class Type {
+        PASS,
         SINGLE,
         PAIR,
         TRIPLE,
@@ -21,6 +22,8 @@ public:
     static Combination* createCombination(QVector<int>);
 
     QVector<BaseCard*> getCards() const;
+    BaseCard* getFirstCard() const;
+    BaseCard* getLastCard() const;
     int size() const;
 
 
