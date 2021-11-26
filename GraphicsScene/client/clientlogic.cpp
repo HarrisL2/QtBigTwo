@@ -44,15 +44,21 @@ void ClientLogic::processPlay(QVector<int> input) {
         msg.exec();
     } else {
         if (lastPlayer == currentPlayer) {
-            QJsonObject data;
-            data["type"] = "newPlay";
-            QJsonArray play;
-            QVector<BaseCard*> cards = comb->getCards();
-            for (int i = 0; i < cards.size(); i++) {
-                play.append(cards[i]->getID());
+            if (comb->getType() == Combination::Type::PASS) {
+                QMessageBox msg;
+                msg.setText("Cannot pass.");
+                msg.exec();
+            } else {
+                QJsonObject data;
+                data["type"] = "newPlay";
+                QJsonArray play;
+                QVector<BaseCard*> cards = comb->getCards();
+                for (int i = 0; i < cards.size(); i++) {
+                    play.append(cards[i]->getID());
+                }
+                data["play"] = play;
+                client->sendData(data);
             }
-            data["play"] = play;
-            client->sendData(data);
         }
     }
 }

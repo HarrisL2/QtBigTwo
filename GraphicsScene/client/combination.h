@@ -21,9 +21,11 @@ public:
 
     static Combination* createCombination(QVector<int>);
 
+
     QVector<BaseCard*> getCards() const;
     BaseCard* getFirstCard() const;
     BaseCard* getLastCard() const;
+    Type getType() const;
     int size() const;
 
 

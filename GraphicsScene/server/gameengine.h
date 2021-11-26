@@ -5,6 +5,7 @@
 #include <QJsonObject>
 
 #include "server.h"
+#include "../client/hand.h"
 #include "../client/basecard.h"
 #include "../client/combination.h"
 
@@ -36,6 +37,7 @@ private:
     void advanceNextPlayer();
     void playerDraw(QString);
     void updateAll();
+    Combination* getAIMove(Hand, Combination);
 };
 
 #endif // GAMEENGINE_H

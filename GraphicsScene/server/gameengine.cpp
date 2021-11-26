@@ -51,6 +51,10 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
     updateAll();
 }
 
+Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) {
+
+}
+
 void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
     assert(sender->getName() == currentPlayer->toString());
     if (data["type"].toString() == "newPlay") {
