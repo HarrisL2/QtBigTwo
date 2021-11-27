@@ -77,7 +77,17 @@ void ClientLogic::processPlay(QVector<int> input) {
             }
             Combination* lastComb = Combination::createCombination(combInts);
             if (*comb > *lastComb) {
-                sendPlay(comb);
+                if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO && comb->getFirstCard()->getType() == BaseCard::Type::UNO) {
+                    if (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor()) {
+                        QMessageBox msg;
+                        msg.setText("Card color does not match previous play!");
+                        msg.exec();
+                    } else {
+                        sendPlay(comb);
+                    }
+                } else {
+                    sendPlay(comb);
+                }
             } else {
                 QMessageBox msg;
                 msg.setText("Invalid play!");
