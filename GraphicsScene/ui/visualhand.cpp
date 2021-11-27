@@ -98,7 +98,6 @@ void VisualHand::renderHand() {
 
 void VisualHand::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsItem::mousePressEvent(event);
-    qDebug() << "cliked";
 }
 
 void VisualHand::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {

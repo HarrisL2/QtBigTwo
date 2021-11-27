@@ -23,6 +23,7 @@ public:
 
 
     QVector<BaseCard*> getCards() const;
+    QVector<BaseCard*> getSorted() const;
     BaseCard* getFirstCard() const;
     BaseCard* getLastCard() const;
     Type getType() const;
@@ -33,6 +34,9 @@ private:
     Combination(QVector<BaseCard*>, Type);
     Type type;
     QVector<BaseCard*> cards;
+    QVector<BaseCard*> sorted;
 };
+
+bool operator>(const Combination& lhs, const Combination& rhs);
 
 #endif // COMBINATION_H

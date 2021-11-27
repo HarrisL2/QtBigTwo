@@ -80,7 +80,7 @@ bool GameEngine::canPlay(BaseCard* lastCard, BaseCard* handCard) const {
 
 QVector<int> GameEngine::getSingle(Hand hand, BaseCard* lastCard) const {
     for (int i = 0; i < hand.getCards().size(); i++) {
-        BaseCard* card = hand.getCards()[i];
+        BaseCard* card = hand.getCards().at(i);
         if (canPlay(lastCard, card)) {
             QVector<int> temp;
             temp.append(card->getID());
@@ -165,8 +165,10 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
         }
         if (nextPlayer == lastPlayer) {
             for (int i = 0; i < playerNames.size(); i++) {
-                QJsonArray empty;
-                lastPlays[playerNames[i].toString()] = empty;
+                if (!(currentPlayer == nextPlayer && playerNames[i].toString() == currentPlayer->toString())) {
+                    QJsonArray empty;
+                    lastPlays[playerNames[i].toString()] = empty;
+                }
             }
         }
         currentPlayer = nextPlayer;

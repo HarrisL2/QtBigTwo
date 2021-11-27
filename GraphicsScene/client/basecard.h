@@ -48,4 +48,6 @@ protected:
     BaseCard();
 };
 
+bool operator>(const BaseCard& lhs, const BaseCard& rhs);
+
 #endif // BASECARD_H

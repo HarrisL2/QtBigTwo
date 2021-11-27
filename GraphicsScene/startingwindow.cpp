@@ -66,7 +66,6 @@ void StartingWindow::on_CreditsButton_clicked() {
 }
 
 void StartingWindow::clientRecieved(const QJsonObject& data) {
-    qDebug() << data["type"];
     if (data["type"] == "nameList") {
         LobbyWindow* lobby = new LobbyWindow(client, data["list"].toArray(), ui->PlayerNameBox->toPlainText(), nullptr, server);
         lobby->show();

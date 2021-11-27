@@ -125,13 +125,36 @@ Combination* Combination::createCombination(QVector<int> ids) {
 
 Combination::Combination(QVector<BaseCard*> cards, Type type) :
     type(type),
-    cards(cards)
+    cards(cards),
+    sorted(cards)
 {
-
+    for (int i = 0; i < sorted.size(); i++) {
+        for (int j = i; j < sorted.size(); j++) {
+            if (sorted[j]->getID() > sorted[i]->getID()) {
+                BaseCard* temp = sorted[j];
+                sorted[j] = sorted[i];
+                sorted[i] = temp;
+            }
+        }
+    }
+    for (int i = 0; i < sorted.size(); i++) {
+        for (int j = i; j < sorted.size(); j++) {
+            if ((sorted[j]->getNumber() < 3 ? sorted[j]->getNumber() + 13 : sorted[j]->getNumber()) >
+                    (sorted[i]->getNumber() < 3 ? sorted[i]->getNumber() + 13 : sorted[i]->getNumber())) {
+                BaseCard* temp = sorted[j];
+                sorted[j] = sorted[i];
+                sorted[i] = temp;
+            }
+        }
+    }
 }
 
 QVector<BaseCard*> Combination::getCards() const {
     return cards;
+}
+
+QVector<BaseCard*> Combination::getSorted() const {
+    return sorted;
 }
 
 BaseCard* Combination::getFirstCard() const {
@@ -148,4 +171,36 @@ Combination::Type Combination::getType() const {
 
 int Combination::size() const {
     return cards.size();
+}
+
+bool operator>(const Combination& lhs, const Combination& rhs) {
+    if (lhs.getType() != rhs.getType()) {
+        if ((static_cast<int>(lhs.getType()) < 4) || (static_cast<int>(rhs.getType()) < 4)) {
+            return false;
+        } else {
+            return (static_cast<int>(lhs.getType())) > (static_cast<int>(rhs.getType()));
+        }
+    } else {
+        switch (lhs.getType()) {
+        BaseCard *lhsMajor, *rhsMajor;
+        case Combination::Type::SINGLE:
+        case Combination::Type::PAIR:
+        case Combination::Type::TRIPLE:
+        case Combination::Type::STRAIGHT:
+        case Combination::Type::FLUSH:
+        case Combination::Type::STRAIGHT_FLUSH:
+            return *(lhs.getSorted().at(0)) > *(rhs.getSorted().at(0));
+        case Combination::Type::FULL_HOUSE:
+            lhsMajor = (lhs.getSorted().at(1)->getNumber()==lhs.getSorted().at(2)->getNumber())?lhs.getSorted().at(0):lhs.getSorted().at(2);
+            rhsMajor = (rhs.getSorted().at(1)->getNumber()==rhs.getSorted().at(2)->getNumber())?rhs.getSorted().at(0):rhs.getSorted().at(2);
+            return *(lhsMajor) > *(rhsMajor);
+        case Combination::Type::FOUR_OF_A_KIND:
+            lhsMajor = (lhs.getSorted().at(0)->getNumber()==lhs.getSorted().at(1)->getNumber())?lhs.getSorted().at(0):lhs.getSorted().at(4);
+            rhsMajor = (rhs.getSorted().at(0)->getNumber()==rhs.getSorted().at(1)->getNumber())?rhs.getSorted().at(0):rhs.getSorted().at(4);
+            return *(lhsMajor) > *(rhsMajor);
+        case Combination::Type::PASS:
+            return false;
+        }
+    }
+    return false;
 }

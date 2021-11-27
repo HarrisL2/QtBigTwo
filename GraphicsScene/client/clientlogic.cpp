@@ -66,25 +66,22 @@ void ClientLogic::processPlay(QVector<int> input) {
                 sendPlay(comb);
             }
         } else {
+            if (comb->getType() == Combination::Type::PASS) {
+                sendPlay(comb);
+                return;
+            }
             QJsonArray tempComb = lastPlays[lastPlayer].toArray();
             QVector<int> combInts;
             for (int i = 0; i < tempComb.size(); i++) {
                 combInts.append(tempComb[i].toInt());
             }
             Combination* lastComb = Combination::createCombination(combInts);
-            if (comb->getType() == Combination::Type::PASS) {
+            if (*comb > *lastComb) {
                 sendPlay(comb);
-            } else if (lastComb->size() != comb->size()) {
-                QMessageBox msg;
-                msg.setText("Play type does not match previous.");
-                msg.exec();
-            } if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO && comb->getFirstCard()->getType() == BaseCard::Type::UNO &&
-                (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor())) {
-                QMessageBox msg;
-                msg.setText("Play color does not match previous.");
-                msg.exec();
             } else {
-                sendPlay(comb);
+                QMessageBox msg;
+                msg.setText("Invalid play!");
+                msg.exec();
             }
         }
     }
