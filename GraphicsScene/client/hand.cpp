@@ -19,13 +19,37 @@ Hand::Hand(const QVector<int>& ids) : cards(QVector<BaseCard*>(0)) {
     sort();
 }
 
+Hand::Hand(const QJsonArray& ids) {
+    for (int i = 0; i < ids.size(); i++) {
+        if (ids[i].toInt() < 99) {
+            cards.append(new PlayingCard(ids[i].toInt()));
+        }
+        else {
+            cards.append(new UNOCard(ids[i].toInt()));
+        }
+    }
+    sort();
+}
+
+QJsonArray Hand::toJsonArray() {
+    QJsonArray arr;
+    for (int i = 0; i < cards.size(); i++) {
+        arr.append(cards[i]->getID());
+    }
+    return arr;
+}
+
 void Hand::addCard(BaseCard* card) {
     cards.append(card);
     sort();
 }
 
-void Hand::removeCard(BaseCard* card) {
-    cards.removeOne(card);
+void Hand::removeCard(int id) {
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getID() == id) {
+            cards.remove(i);
+        }
+    }
 }
 
 void Hand::sort() {

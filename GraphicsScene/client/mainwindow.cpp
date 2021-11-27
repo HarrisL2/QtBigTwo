@@ -33,9 +33,11 @@ void MainWindow::updateScene() {
     QJsonObject lastPlays = logic->getLastPlays();
     QJsonArray names = logic->getNames();
     QString thisName = logic->getName();
+    QString currPlayer = logic->getCurrPlayer();
     QJsonArray::iterator it2 = names.begin();
     while (it2->toString() != thisName) {it2++;}
 
+    if (currPlayer == it2->toString()) scene->setCurrent(0);
     scene->changeHand(0, hands[it2->toString()].toArray());
     scene->setLastPlay(0, lastPlays[it2->toString()].toArray());
     if (hands.size() == 2) {
@@ -43,28 +45,34 @@ void MainWindow::updateScene() {
         scene->setName(2, it2->toString());
         scene->changeHand(2, hands[it2->toString()].toArray());
         scene->setLastPlay(2, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(2);
     } else if (hands.size() == 3) {
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(1, it2->toString());
         scene->changeHand(1, hands[it2->toString()].toArray());
         scene->setLastPlay(1, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(1);
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(3, it2->toString());
         scene->changeHand(3, hands[it2->toString()].toArray());
         scene->setLastPlay(3, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(3);
     } else {
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(1, it2->toString());
         scene->changeHand(1, hands[it2->toString()].toArray());
         scene->setLastPlay(1, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(1);
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(2, it2->toString());
         scene->changeHand(2, hands[it2->toString()].toArray());
         scene->setLastPlay(2, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(2);
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(3, it2->toString());
         scene->changeHand(3, hands[it2->toString()].toArray());
         scene->setLastPlay(3, lastPlays[it2->toString()].toArray());
+        if (currPlayer == it2->toString()) scene->setCurrent(3);
     }
 }
 

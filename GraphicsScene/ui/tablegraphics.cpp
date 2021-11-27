@@ -23,6 +23,8 @@ TableGraphics::TableGraphics() :
         this->addItem(nameLabels[i]);
         countLabels.append(new QGraphicsTextItem());
         this->addItem(countLabels[i]);
+        indicators.append(new QGraphicsRectItem());
+        this->addItem(indicators[i]);
     }
     this->addItem(debugLabel);
     debugLabel->setPos(0,0);
@@ -53,18 +55,27 @@ void TableGraphics::setCount(int i, QString text) {
     countLabels[i]->setPlainText(text);
 }
 
+void TableGraphics::setCurrent(int i) {
+    for (int x = 0; x < indicators.size(); x++) {
+        if (x == i) indicators[x]->setBrush(Qt::green);
+        else indicators[x]->setBrush(Qt::red);
+    }
+}
+
 void TableGraphics::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsScene::mousePressEvent(event);
-    QVector<int> selected = hands[0]->getSelected();
-    for (int i = 0; i < selected.size(); i++) {
-        if (!lastPlays[0]->hasCard(selected[i])) {
-            lastPlays[0]->addCard(selected[i]);
+    if (indicators[0]->brush() == Qt::green) {
+        QVector<int> selected = hands[0]->getSelected();
+        for (int i = 0; i < selected.size(); i++) {
+            if (!lastPlays[0]->hasCard(selected[i])) {
+                lastPlays[0]->addCard(selected[i]);
+            }
         }
-    }
-    QVector<int> pastSelected = lastPlays[0]->getCards();
-    for (int i = 0; i < pastSelected.size(); i++) {
-        if (!selected.contains(pastSelected[i])) {
-            lastPlays[0]->removeCard(pastSelected[i]);
+        QVector<int> pastSelected = lastPlays[0]->getCards();
+        for (int i = 0; i < pastSelected.size(); i++) {
+            if (!selected.contains(pastSelected[i])) {
+                lastPlays[0]->removeCard(pastSelected[i]);
+            }
         }
     }
     if (!event->isAccepted()) {
@@ -121,6 +132,11 @@ void TableGraphics::resizeEvent(QResizeEvent* event) {
     countLabels[1]->setPos(WIDTH*0.92,HEIGHT*0.85);
     countLabels[2]->setPos(WIDTH*0.85,HEIGHT*0.04);
     countLabels[3]->setPos(WIDTH*0.03,HEIGHT*0.85);
+
+    indicators[0]->setRect(WIDTH*0.4,HEIGHT*0.60,WIDTH*0.2,HEIGHT*0.02);
+    indicators[1]->setRect(WIDTH*0.68,HEIGHT*0.37,HEIGHT*0.02,HEIGHT*0.23);
+    indicators[2]->setRect(WIDTH*0.4,HEIGHT*0.35,WIDTH*0.2,HEIGHT*0.02);
+    indicators[3]->setRect(WIDTH*0.3,HEIGHT*0.37,HEIGHT*0.02,HEIGHT*0.23);
 
     debugLabel->setPlainText(
                 QString::number( event->size().width())+

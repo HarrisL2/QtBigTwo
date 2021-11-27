@@ -4,6 +4,7 @@
 #include "basecard.h"
 
 #include <QVector>
+#include <QJsonArray>
 
 
 class Hand
@@ -11,9 +12,10 @@ class Hand
 public:
     Hand(const QVector<BaseCard*>&);
     Hand(const QVector<int>&);
+    Hand(const QJsonArray&);
 
     void addCard(BaseCard*);
-    void removeCard(BaseCard*);
+    void removeCard(int);
     void sort();
 
     int numCards() const;
@@ -22,6 +24,7 @@ public:
     int numColor(BaseCard::Color) const;
     int numNum(int) const;
     QVector<BaseCard*> getCards() const;
+    QJsonArray toJsonArray();
 
 private:
     QVector<BaseCard*> cards;

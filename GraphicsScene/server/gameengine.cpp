@@ -36,6 +36,8 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
             BaseCard* temp = deck.takeLast();
             newHand.append(temp->getID());
         }
+        Hand sort(newHand);
+        newHand = sort.toJsonArray();
         playerHands[playerNames[i].toString()] = newHand;
 
         QJsonArray newPlay;
@@ -153,7 +155,11 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
                 advanceNextPlayer();
             }
         }
-
+        Hand playerhand(playerHands[currentPlayer->toString()].toArray());
+        for (int i = 0; i < cards.size(); i++) {
+            playerhand.removeCard(cards[i]->getID());
+        }
+        playerHands[currentPlayer->toString()] = playerhand.toJsonArray();
         if (play.size() > 0) {
             lastPlayer = currentPlayer;
         }

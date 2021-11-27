@@ -85,13 +85,13 @@ void VisualHand::renderHand() {
         int startpoint = (WIDTH - totalCardWidth)/2;
         for(int i = 0; i < cards.size(); i++) {
             cards[i]->setScale(CARD_WIDTH/500.0);
-            cards[i]->setPos(startpoint+CARD_WIDTH*i,0);
+            cards[i]->setPos(startpoint+CARD_WIDTH*i,cards[i]->isSelected()?-20:0);
         }
     } else {
         double cardDistance = (WIDTH-CARD_WIDTH)/(cards.size()-1);
         for(int i = 0; i < cards.size(); i++) {
             cards[i]->setScale(CARD_WIDTH/500.0);
-            cards[i]->setPos(cardDistance*i,0);
+            cards[i]->setPos(cardDistance*i,cards[i]->isSelected()?-20:0);
         }
     }
 }

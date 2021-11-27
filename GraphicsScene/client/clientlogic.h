@@ -23,6 +23,7 @@ public:
     void processPlay(QVector<int>);
     QJsonArray getNames() const;
     QJsonObject getLastPlays() const;
+    QString getCurrPlayer() const;
 
 signals:
     void dataChanged();

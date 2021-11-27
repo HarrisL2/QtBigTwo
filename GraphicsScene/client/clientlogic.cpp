@@ -42,6 +42,10 @@ QJsonObject ClientLogic::getLastPlays() const {
     return lastPlays;
 }
 
+QString ClientLogic::getCurrPlayer() const {
+    return currentPlayer;
+}
+
 void ClientLogic::processPlay(QVector<int> input) {
     Combination* comb = Combination::createCombination(input);
     if (!waitingForPlay()) {

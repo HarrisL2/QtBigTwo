@@ -19,6 +19,7 @@ public:
     void setName(int, QString);
     void setCount(int, QString);
     void setLastPlay(int i, const QJsonArray& ids);
+    void setCurrent(int i);
     QVector<int> getNextPlay();
 
 
@@ -30,6 +31,7 @@ private:
     QVector<VisualHand*> lastPlays;
     QVector<QGraphicsTextItem*> nameLabels;
     QVector<QGraphicsTextItem*> countLabels;
+    QVector<QGraphicsRectItem*> indicators;
     QGraphicsTextItem* debugLabel;
 
 };
