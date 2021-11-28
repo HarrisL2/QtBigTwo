@@ -44,6 +44,10 @@ QString ClientLogic::getCurrPlayer() const {
     return currentPlayer;
 }
 
+int ClientLogic::getDir() const {
+    return turnDir;
+}
+
 void ClientLogic::processPlay(QVector<int> input) {
     Combination* comb = Combination::createCombination(input);
     if (!waitingForPlay()) {

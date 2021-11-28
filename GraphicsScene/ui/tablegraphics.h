@@ -20,6 +20,7 @@ public:
     void setCount(int, QString);
     void setLastPlay(int i, const QJsonArray& ids);
     void setCurrent(int i);
+    void setDirection(int i);
     QVector<int> getNextPlay();
 
 
@@ -32,6 +33,7 @@ private:
     QVector<QGraphicsTextItem*> nameLabels;
     QVector<QGraphicsTextItem*> countLabels;
     QVector<QGraphicsRectItem*> indicators;
+    QVector<QGraphicsPixmapItem*> arrows;
     QGraphicsTextItem* debugLabel;
 
 };

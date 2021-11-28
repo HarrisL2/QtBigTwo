@@ -24,6 +24,7 @@ public:
     QJsonArray getNames() const;
     QJsonObject getLastPlays() const;
     QString getCurrPlayer() const;
+    int getDir() const;
 
 signals:
     void dataChanged();

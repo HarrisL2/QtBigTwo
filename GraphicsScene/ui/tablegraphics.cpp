@@ -13,6 +13,11 @@ TableGraphics::TableGraphics() :
     debugLabel(new QGraphicsTextItem("0,0"))
 {
     for (int i = 0; i < 4; i++) {
+        arrows.append(new QGraphicsPixmapItem());
+        QPixmap texture(":/cards/png/a"+QString::number(i+1)+".png");
+        arrows[i]->setPixmap(texture);
+        this->addItem(arrows[i]);
+
         hands.append(new VisualHand(WIDTH*0.6, HEIGHT*0.2, CARD_WIDTH, CARD_HEIGHT,
                               QVector<int>(0),i==0));
         this->addItem(hands[i]);
@@ -62,6 +67,13 @@ void TableGraphics::setCurrent(int i) {
     }
 }
 
+void TableGraphics::setDirection(int i) {
+    for (int x = 1; x <= 4; x++) {
+        QPixmap texture(":/cards/png/a"+QString::number(x*i)+".png");
+        arrows[x-1]->setPixmap(texture);
+    }
+}
+
 void TableGraphics::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     QGraphicsScene::mousePressEvent(event);
     if (indicators[0]->brush() == Qt::green) {
@@ -96,6 +108,13 @@ void TableGraphics::resizeEvent(QResizeEvent* event) {
     this->setSceneRect(0,0,WIDTH-2,HEIGHT-2);
     CARD_WIDTH = WIDTH/10.0;
     CARD_HEIGHT = CARD_WIDTH*1.45;
+
+    for (int x = 0; x < 4; x++) arrows[x]->setScale((WIDTH*0.2)/700.0);
+    arrows[0]->setPos(WIDTH*0.65,HEIGHT*0.6);
+    arrows[1]->setPos(WIDTH*0.2,HEIGHT*0.6);
+    arrows[2]->setPos(WIDTH*0.2,HEIGHT*0.2);
+    arrows[3]->setPos(WIDTH*0.65,HEIGHT*0.2);
+
     if (WIDTH*0.6 > 600) {
         hands[0]->setPos(WIDTH*0.2,HEIGHT-CARD_HEIGHT*0.6);
         hands[0]->resizeEvent(WIDTH*0.6,HEIGHT*0.2,CARD_WIDTH,CARD_HEIGHT,event);

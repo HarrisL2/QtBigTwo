@@ -35,6 +35,9 @@ void MainWindow::updateScene() {
     QString thisName = logic->getName();
     QString currPlayer = logic->getCurrPlayer();
     QJsonArray::iterator it2 = names.begin();
+
+    scene->setDirection(logic->getDir());
+
     while (it2->toString() != thisName) {it2++;}
 
     if (currPlayer == it2->toString()) scene->setCurrent(0);

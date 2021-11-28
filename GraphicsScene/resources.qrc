@@ -110,5 +110,13 @@
         <file>png/152.png</file>
         <file>png/153.png</file>
         <file>png/154.png</file>
+        <file>png/a1.png</file>
+        <file>png/a-1.png</file>
+        <file>png/a2.png</file>
+        <file>png/a-2.png</file>
+        <file>png/a3.png</file>
+        <file>png/a-3.png</file>
+        <file>png/a4.png</file>
+        <file>png/a-4.png</file>
     </qresource>
 </RCC>
