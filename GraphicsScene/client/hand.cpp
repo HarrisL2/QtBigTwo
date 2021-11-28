@@ -121,3 +121,33 @@ int Hand::numNum(int number) const {
 QVector<BaseCard*> Hand::getCards() const {
     return cards;
 }
+
+QVector<BaseCard*> Hand::getAllNum(int num) const {
+    QVector<BaseCard*> out;
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getNumber() == num) {
+            out.append(cards[i]);
+        }
+    }
+    return out;
+}
+
+QVector<BaseCard*> Hand::getAllSuit(BaseCard::Suit suit) const {
+    QVector<BaseCard*> out;
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getSuit() == suit) {
+            out.append(cards[i]);
+        }
+    }
+    return out;
+}
+
+QVector<BaseCard*> Hand::getAllColor(BaseCard::Color color) const {
+    QVector<BaseCard*> out;
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getColor() == color) {
+            out.append(cards[i]);
+        }
+    }
+    return out;
+}

@@ -50,93 +50,186 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
     lastPlayer = currentPlayer;
     nextPlayer = currentPlayer+1 == playerNames.end() ? playerNames.begin() : currentPlayer+1;
     turnDirection = 1;
-    updateAll();
     connect(server, &Server::recievedData, this, &GameEngine::recieveData);
-}
-
-bool GameEngine::canPlay(BaseCard* lastCard, BaseCard* handCard) const {
-    int lastNum = lastCard->getNumber();
-    int handNum = handCard->getNumber();
-    if (lastNum == handNum) { //(lastNum < 3 ? lastNum + 13 : lastNum) == (handNum < 3 ? handNum + 13 : handNum)
-        if (lastCard->getType() != handCard->getType()) {
-            return true;
-        } else if (lastCard->getType() == BaseCard::Type::UNO) {
-            return false;
-        } else if (lastCard->getType() == BaseCard::Type::PLAYING) {
-            if (handCard->getID() > lastCard->getID()) {
-                return true;
-            }
+    if (currentPlayer->toString().left(2) == "AI") {
+        Hand AIHand(playerHands[currentPlayer->toString()].toArray());
+        Combination* lastPlay = nullptr;
+        if (currentPlayer != lastPlayer) {
+            lastPlay = Combination::createCombination(lastPlays[lastPlayer->toString()].toArray());
         }
-    } else if ((lastNum < 3 ? lastNum + 13 : lastNum) < (handNum < 3 ? handNum + 13 : handNum)) {
-        if (lastCard->getType() == BaseCard::Type::UNO && handCard->getType() == BaseCard::Type::UNO) {
-            if (lastCard->getColor() != handCard->getColor()) {
-                return false;
-            }
-        }
-        return true;
+        processMove(getAIMove(AIHand,lastPlay));
     }
-    return false;
+    updateAll();
 }
 
-QVector<int> GameEngine::getSingle(Hand hand, BaseCard* lastCard) const {
-    for (int i = 0; i < hand.getCards().size(); i++) {
-        BaseCard* card = hand.getCards().at(i);
-        if (canPlay(lastCard, card)) {
-            QVector<int> temp;
-            temp.append(card->getID());
-            return temp;
-        }
+Combination* GameEngine::getAIMove(Hand hand, Combination* lastPlay) const {
+    QVector<BaseCard*> cards = hand.getCards();
+    if (lastPlay == nullptr) {
+        QVector<BaseCard*> toPlay;
+        toPlay.append(cards[0]);
+        return Combination::createCombination(toPlay);
     }
-    return QVector<int>(0);
-}
-
-QVector<int> GameEngine::getPair(Hand hand, Combination lastPlay) const {
-    for (int i = lastPlay.getLastCard()->getNumber(); ; i++) {
-        if (i == 14) {
-            i = 1;
-        }
-        if (hand.numNum(i) >= 2) {
-            QVector<BaseCard*> targets;
-            for (int j = 0; j < hand.getCards().size() ; j++) {
-                BaseCard* card = hand.getCards()[j];
-                if (card->getNumber() == i) {
-                    targets.append(card);
+    QVector<BaseCard*> toPlay;
+    switch (lastPlay->getType()) {
+    case Combination::Type::SINGLE: {
+        for (int i = 0 ; i < cards.size(); i++) {
+            if (*cards[i] > *lastPlay->getFirstCard()) {
+                if (lastPlay->getFirstCard()->getType() == BaseCard::Type::UNO && cards[i]->getType() == BaseCard::Type::UNO && lastPlay->getFirstCard()->getColor() != cards[i]->getColor()) {
+                    continue;
+                } else {
+                    toPlay.append(cards[i]);
+                    return Combination::createCombination(toPlay);
                 }
             }
         }
-
-
-        if (i == 2) {
-            break;
+        break;
+    }
+    case Combination::Type::PAIR: {
+        for (int i = lastPlay->getFirstCard()->getNumber(); ; i++) {
+            if (i == 14) i = 1;
+            if (hand.numNum(i) >= 2) {
+                QVector<BaseCard*> nums = hand.getAllNum(i);
+                for (int j = 0; j < nums.size(); j++) {
+                    for (int k = j+1; k < nums.size(); k++) {
+                        toPlay.append(nums[j]);
+                        toPlay.append(nums[k]);
+                        Combination* testComb = Combination::createCombination(toPlay);
+                        if (*testComb > *lastPlay) {
+                            return testComb;
+                        } else {
+                            toPlay.clear();
+                            delete testComb;
+                        }
+                    }
+                }
+            }
+            if (i == 2) break;
         }
+        break;
     }
-}
-
-Combination* GameEngine::getAIMove(Hand hand, Combination lastPlay) const {
-    Combination::Type currentCom = lastPlay.getType();
-    BaseCard* lastCard = lastPlay.getLastCard();
-    BaseCard::Type lastType = lastCard->getType(); //UNO or playingcard
-    int lastNum = lastCard->getNumber();
-    QVector<BaseCard*> cardInHand = hand.getCards();
-    if (currentCom == Combination::Type::SINGLE) {
-        return Combination::createCombination(getSingle(hand, lastCard));
+    case Combination::Type::TRIPLE: {
+        for (int i = lastPlay->getFirstCard()->getNumber(); ; i++) {
+            if (i == 14) i = 1;
+            if (hand.numNum(i) >= 2) {
+                QVector<BaseCard*> nums = hand.getAllNum(i);
+                for (int j = 0; j < nums.size(); j++) {
+                    for (int k = j+1; k < nums.size(); k++) {
+                        for (int l = k+1; l < nums.size(); l++) {
+                            toPlay.append(nums[j]);
+                            toPlay.append(nums[k]);
+                            toPlay.append(nums[l]);
+                            Combination* testComb = Combination::createCombination(toPlay);
+                            if (*testComb > *lastPlay) {
+                                return testComb;
+                            } else {
+                                toPlay.clear();
+                                delete testComb;
+                            }
+                        }
+                    }
+                }
+            }
+            if (i == 2) break;
+        }
+        break;
     }
-    else if (currentCom == Combination::Type::PAIR) {
-        return Combination::createCombination(getPair(hand, lastPlay));
+    case Combination::Type::STRAIGHT: {
+        for (int i = lastPlay->getSorted().at(0)->getNumber(); ;i++) {
+            if (i == 14) i = 1;
+            bool hasAll = true;
+            for (int j = i; ; j--) {
+                if (j == 0) j = 13;
+                if (hand.numNum(j) == 0) hasAll = false;
+                if (j == lastPlay->getSorted().at(4)->getNumber()) break;
+            }
+            if (hasAll) {
+                for (int j = i; ; j--) {
+                    if (j == 0) j = 13;
+                    toPlay.append(hand.getAllNum(j).at(0));
+                    if (j == lastPlay->getSorted().at(4)->getNumber()) break;
+                }
+                return Combination::createCombination(toPlay);
+            }
+            if (i == 2) break;
+        }
+        break;
     }
-    else if (currentCom == Combination::Type::TRIPLE) {
-
+    case Combination::Type::FLUSH: {
+        for (int i = 1; i <= 4; i++) {
+            int suitCount = hand.numSuit(static_cast<BaseCard::Suit>(i));
+            if (suitCount >= 5) {
+                QVector<BaseCard*> temp = hand.getAllSuit(static_cast<BaseCard::Suit>(i));
+                if (*temp[suitCount-1] > *lastPlay->getSorted().at(0)) {
+                    for (int j = suitCount-1; j >= suitCount-5; j--) {
+                        toPlay.append(temp[j]);
+                        return Combination::createCombination(toPlay);
+                    }
+                }
+            }
+        }
+        for (int i = 1; i <= 4; i++) {
+            int colorCount = hand.numColor(static_cast<BaseCard::Color>(i));
+            if (colorCount >= 5) {
+                QVector<BaseCard*> temp = hand.getAllColor(static_cast<BaseCard::Color>(i));
+                if (*temp[colorCount-1] > *lastPlay->getSorted().at(0)) {
+                    for (int j = colorCount-1; j >= colorCount-5; j--) {
+                        toPlay.append(temp[j]);
+                        return Combination::createCombination(toPlay);
+                    }
+                }
+            }
+        }
+        break;
     }
-    else {
-
+    case Combination::Type::FULL_HOUSE: {
+        BaseCard* lastMajor = (lastPlay->getSorted().at(1)->getNumber() == lastPlay->getSorted().at(2)->getNumber() ? lastPlay->getSorted().at(0) : lastPlay->getSorted().at(2));
+        for (int i = lastMajor->getNumber(); ;i++) {
+            if (i == 14) i = 1;
+            if (hand.numNum(i) >= 3) {
+                for (int j = 3; ; j++) {
+                    if (j == 14) j = 1;
+                    if (i != j && hand.numNum(j) >= 2) {
+                        QVector<BaseCard*> majors = hand.getAllNum(i);
+                        QVector<BaseCard*> minors = hand.getAllNum(j);
+                        for (int x = 0; x < 3; x++) toPlay.append(majors[x]);
+                        for (int x = 0; x < 2; x++) toPlay.append(minors[x]);
+                        return Combination::createCombination(toPlay);
+                    }
+                    if (j == 2) break;
+                }
+            }
+            if (i == 2) break;
+        }
+        break;
+    }
+    case Combination::Type::FOUR_OF_A_KIND: {
+        BaseCard* lastMajor = (lastPlay->getSorted().at(0)->getNumber() == lastPlay->getSorted().at(1)->getNumber() ? lastPlay->getSorted().at(0) : lastPlay->getSorted().at(4));
+        for (int i = lastMajor->getNumber(); ;i++) {
+            if (i == 14) i = 1;
+            if (hand.numNum(i) >= 4) {
+                for (int j = 0; j < hand.numCards(); j++) {
+                    QVector<BaseCard*> majors = hand.getAllNum(i);
+                    if (cards[j]->getNumber() != i) {
+                        for (int x = 0; x < 4; x++) toPlay.append(majors[x]);
+                        toPlay.append(cards[j]);
+                        return Combination::createCombination(toPlay);
+                    }
+                }
+            }
+            if (i == 2) break;
+        }
+        break;
+    }
+    default:
+        break;
     }
     return Combination::createCombination(QVector<int>(0));
 }
 
 void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
     assert(sender->getName() == currentPlayer->toString());
+    qDebug() << data;
     if (data["type"].toString() == "newPlay") {
-        lastPlays[currentPlayer->toString()] = data["play"];
         QJsonArray play = data["play"].toArray();
         QVector<BaseCard*> cards;
         for (int i = 0; i < play.size(); i++) {
@@ -145,38 +238,57 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
             } else {
                 cards.append(new UNOCard(play[i].toInt()));
             }
-            if (cards[i]->getEffect() == BaseCard::Effect::REVERSE) {
-                turnDirection *= -1;
-            } else if (cards[i]->getEffect() == BaseCard::Effect::SKIP) {
-                advanceNextPlayer();
-            } else if (cards[i]->getEffect() == BaseCard::Effect::DRAWTWO) {
-                playerDraw(nextPlayer->toString());
-                playerDraw(nextPlayer->toString());
-                advanceNextPlayer();
+        }
+        processMove(Combination::createCombination(cards));
+    }
+    updateAll();
+}
+
+void GameEngine::processMove(Combination* move) {
+    lastPlays[currentPlayer->toString()] = move->toJsonArray();
+    QVector<BaseCard*> cards = move->getSorted();
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getEffect() == BaseCard::Effect::REVERSE) {
+            turnDirection *= -1;
+        } else if (cards[i]->getEffect() == BaseCard::Effect::SKIP) {
+            QJsonArray empty;
+            lastPlays[nextPlayer->toString()] = empty;
+            advanceNextPlayer();
+        } else if (cards[i]->getEffect() == BaseCard::Effect::DRAWTWO) {
+            playerDraw(nextPlayer->toString());
+            playerDraw(nextPlayer->toString());
+            advanceNextPlayer();
+        }
+    }
+    Hand playerhand(playerHands[currentPlayer->toString()].toArray());
+    for (int i = 0; i < cards.size(); i++) {
+        playerhand.removeCard(cards[i]->getID());
+    }
+    playerHands[currentPlayer->toString()] = playerhand.toJsonArray();
+    if (cards.size() > 0) {
+        lastPlayer = currentPlayer;
+    }
+    if (nextPlayer == lastPlayer) {
+        for (int i = 0; i < playerNames.size(); i++) {
+            if (!(currentPlayer == nextPlayer && playerNames[i].toString() == currentPlayer->toString())) {
+                QJsonArray empty;
+                lastPlays[playerNames[i].toString()] = empty;
             }
         }
-        Hand playerhand(playerHands[currentPlayer->toString()].toArray());
-        for (int i = 0; i < cards.size(); i++) {
-            playerhand.removeCard(cards[i]->getID());
+    }
+    currentPlayer = nextPlayer;
+    advanceNextPlayer();
+    if (currentPlayer->toString().left(2) == "AI") {
+        Hand AIHand(playerHands[currentPlayer->toString()].toArray());
+        Combination* lastPlay = nullptr;
+        if (currentPlayer != lastPlayer) {
+            lastPlay = Combination::createCombination(lastPlays[lastPlayer->toString()].toArray());
         }
-        playerHands[currentPlayer->toString()] = playerhand.toJsonArray();
-        if (play.size() > 0) {
-            lastPlayer = currentPlayer;
-        }
-        if (nextPlayer == lastPlayer) {
-            for (int i = 0; i < playerNames.size(); i++) {
-                if (!(currentPlayer == nextPlayer && playerNames[i].toString() == currentPlayer->toString())) {
-                    QJsonArray empty;
-                    lastPlays[playerNames[i].toString()] = empty;
-                }
-            }
-        }
-        currentPlayer = nextPlayer;
-        advanceNextPlayer();
+        processMove(getAIMove(AIHand,lastPlay));
+    } else {
         updateAll();
     }
 }
-
 void GameEngine::advanceNextPlayer() {
     if (turnDirection == 1) {
         nextPlayer = nextPlayer+1 == playerNames.end() ? playerNames.begin() : nextPlayer+1;

@@ -26,7 +26,6 @@ quint16 Server::getPort() const {return port;}
 QString Server::getIP() const {return ip;}
 
 void Server::incomingConnection(qintptr handle) {
-    qDebug() << "connected";
     Worker* worker = new Worker(this);
     if (!worker->setSocketDescriptor(handle)) {
         worker->deleteLater();

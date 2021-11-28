@@ -5,6 +5,14 @@
 #include "playingcard.h"
 #include "unocard.h"
 
+Combination* Combination::createCombination(const QJsonArray& arr) {
+    QVector<int> ids;
+    for (int i = 0; i < arr.size(); i++) {
+        ids.append(arr[i].toInt());
+    }
+    return Combination::createCombination(ids);
+}
+
 Combination* Combination::createCombination(QVector<int> ids) {
     QVector<BaseCard*> cards;
     for (int i = 0; i < ids.size(); i++) {
@@ -14,6 +22,11 @@ Combination* Combination::createCombination(QVector<int> ids) {
             cards.append(new UNOCard(ids[i]));
         }
     }
+    return Combination::createCombination(cards);
+}
+
+Combination* Combination::createCombination(QVector<BaseCard*> cards) {
+
     if (cards.size() == 0) {
         return new Combination(cards, Combination::Type::PASS);
     }
@@ -171,6 +184,14 @@ Combination::Type Combination::getType() const {
 
 int Combination::size() const {
     return cards.size();
+}
+
+QJsonArray Combination::toJsonArray() {
+    QJsonArray arr;
+    for (int i = 0; i < cards.size(); i++) {
+        arr.append(cards[i]->getID());
+    }
+    return arr;
 }
 
 bool operator>(const Combination& lhs, const Combination& rhs) {

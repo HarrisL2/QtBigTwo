@@ -31,8 +31,8 @@ void Client::readData() {
     stream.setVersion(QDataStream::Qt_5_12);
     stream >> rawData;
     const QJsonDocument data = QJsonDocument::fromJson(rawData);
-
     emit dataRecieved(data.object());
+    socket->readAll();
 }
 
 void Client::sendData(const QJsonObject &data) {

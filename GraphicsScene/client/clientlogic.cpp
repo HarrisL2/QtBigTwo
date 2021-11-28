@@ -8,9 +8,7 @@ ClientLogic::ClientLogic(Client* client) :
     client(client),
     name(client->getName())
 {
-    qDebug() << "constructing";
     connect(client, &Client::dataRecieved, this, &ClientLogic::recieveData);
-    qDebug() << "constructed";
 }
 
 void ClientLogic::recieveData(const QJsonObject& data) {

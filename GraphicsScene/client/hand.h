@@ -24,6 +24,9 @@ public:
     int numColor(BaseCard::Color) const;
     int numNum(int) const;
     QVector<BaseCard*> getCards() const;
+    QVector<BaseCard*> getAllNum(int) const;
+    QVector<BaseCard*> getAllSuit(BaseCard::Suit) const;
+    QVector<BaseCard*> getAllColor(BaseCard::Color) const;
     QJsonArray toJsonArray();
 
 private:

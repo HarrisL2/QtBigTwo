@@ -2,6 +2,7 @@
 #define COMBINATION_H
 
 #include <QVector>
+#include <QJsonArray>
 #include "basecard.h"
 
 class Combination
@@ -19,7 +20,9 @@ public:
         STRAIGHT_FLUSH
     };
 
+    static Combination* createCombination(const QJsonArray&);
     static Combination* createCombination(QVector<int>);
+    static Combination* createCombination(QVector<BaseCard*>);
 
 
     QVector<BaseCard*> getCards() const;
@@ -28,6 +31,8 @@ public:
     BaseCard* getLastCard() const;
     Type getType() const;
     int size() const;
+
+    QJsonArray toJsonArray();
 
 
 private:
