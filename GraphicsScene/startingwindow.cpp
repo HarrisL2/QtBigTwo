@@ -16,6 +16,8 @@ StartingWindow::StartingWindow(QWidget *parent) :
     server(nullptr)
 {
     ui->setupUi(this);
+    QPixmap temp = ui->Title->pixmap();
+    ui->Title->setPixmap(temp.scaled(temp.width() * 0.25,temp.height() * 0.25));
 }
 
 StartingWindow::~StartingWindow()
