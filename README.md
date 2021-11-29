@@ -13,7 +13,7 @@ There are 4 buttons:
 
 - ```Join Room```: For the 2nd to 4th player to join a specific room created by the 1st player
 
-- ```Rules```: Rules of the game Big Two amd Big TwUNO
+- ```Rules```: Rules of the game Big Two and Big TwUNO
 
 - ```Credits```: Credits to developer
 
