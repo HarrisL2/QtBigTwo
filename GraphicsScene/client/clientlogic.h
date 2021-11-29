@@ -28,6 +28,7 @@ public:
 
 signals:
     void dataChanged();
+    void gameWon(QString);
 
 private slots:
     void recieveData(const QJsonObject&);

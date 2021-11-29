@@ -34,8 +34,10 @@ void ClientLogic::recieveData(const QJsonObject& data) {
         playerHands = data["hands"].toObject();
         turnDir = data["turnDir"].toInt();
         lastPlays = data["lastPlays"].toObject();
+        emit dataChanged();
+    } else if (data["type"] == "win") {
+        emit gameWon(data["winner"].toString()+" has won!");
     }
-    emit dataChanged();
 }
 
 /*
@@ -108,7 +110,8 @@ void ClientLogic::processPlay(QVector<int> input) {
             Combination* lastComb = Combination::createCombination(combInts);
             if (*comb > *lastComb) {
                 if (lastComb->getLastCard()->getType() == BaseCard::Type::UNO && comb->getFirstCard()->getType() == BaseCard::Type::UNO) {
-                    if (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor()) {
+                    if (lastComb->getLastCard()->getColor() != comb->getFirstCard()->getColor() &&
+                        lastComb->getLastCard()->getNumber() != comb->getFirstCard()->getNumber()) {
                         QMessageBox msg;
                         msg.setText("Card color does not match previous play!");
                         msg.exec();

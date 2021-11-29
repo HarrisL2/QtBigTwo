@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'lobbywindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.2.1
+** Created by: Qt User Interface Compiler version 5.12.11
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -230,20 +230,20 @@ public:
 
     void retranslateUi(QMainWindow *LobbyWindow)
     {
-        LobbyWindow->setWindowTitle(QCoreApplication::translate("LobbyWindow", "MainWindow", nullptr));
-        RoomLabel->setText(QCoreApplication::translate("LobbyWindow", "Lobby Room", nullptr));
-        PlayerListText->setText(QCoreApplication::translate("LobbyWindow", "Show plsyers here", nullptr));
-        GameStartButton->setText(QCoreApplication::translate("LobbyWindow", "Start Game", nullptr));
-        AIText->setText(QCoreApplication::translate("LobbyWindow", "Number of AI", nullptr));
-        IncreaseAI->setText(QCoreApplication::translate("LobbyWindow", "Increase", nullptr));
-        AICount->setText(QCoreApplication::translate("LobbyWindow", "TextLabel", nullptr));
-        DecreaseAI->setText(QCoreApplication::translate("LobbyWindow", "Decrease", nullptr));
-        PlayerText->setText(QCoreApplication::translate("LobbyWindow", "Number of Players", nullptr));
-        IncreasePlayers->setText(QCoreApplication::translate("LobbyWindow", "Increase", nullptr));
-        PlayerCount->setText(QCoreApplication::translate("LobbyWindow", "TextLabel", nullptr));
-        DecreasePlayers->setText(QCoreApplication::translate("LobbyWindow", "Decrease", nullptr));
-        UNOMode->setText(QCoreApplication::translate("LobbyWindow", "Big TwUNO mode", nullptr));
-        IPLabel->setText(QCoreApplication::translate("LobbyWindow", "IP Here", nullptr));
+        LobbyWindow->setWindowTitle(QApplication::translate("LobbyWindow", "MainWindow", nullptr));
+        RoomLabel->setText(QApplication::translate("LobbyWindow", "Lobby Room", nullptr));
+        PlayerListText->setText(QApplication::translate("LobbyWindow", "Show plsyers here", nullptr));
+        GameStartButton->setText(QApplication::translate("LobbyWindow", "Start Game", nullptr));
+        AIText->setText(QApplication::translate("LobbyWindow", "Number of AI", nullptr));
+        IncreaseAI->setText(QApplication::translate("LobbyWindow", "Increase", nullptr));
+        AICount->setText(QApplication::translate("LobbyWindow", "TextLabel", nullptr));
+        DecreaseAI->setText(QApplication::translate("LobbyWindow", "Decrease", nullptr));
+        PlayerText->setText(QApplication::translate("LobbyWindow", "Number of Players", nullptr));
+        IncreasePlayers->setText(QApplication::translate("LobbyWindow", "Increase", nullptr));
+        PlayerCount->setText(QApplication::translate("LobbyWindow", "TextLabel", nullptr));
+        DecreasePlayers->setText(QApplication::translate("LobbyWindow", "Decrease", nullptr));
+        UNOMode->setText(QApplication::translate("LobbyWindow", "Big TwUNO mode", nullptr));
+        IPLabel->setText(QApplication::translate("LobbyWindow", "IP Here", nullptr));
     } // retranslateUi
 
 };

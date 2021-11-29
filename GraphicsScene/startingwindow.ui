@@ -111,20 +111,15 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <spacer name="verticalSpacer">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
+            <widget class="QWidget" name="verticalWidget" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>2</verstretch>
+              </sizepolicy>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
+             <layout class="QVBoxLayout" name="verticalLayout_7"/>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="CreateRoom">
@@ -173,6 +168,15 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="tabChangesFocus">
+                 <bool>true</bool>
+                </property>
                 <property name="placeholderText">
                  <string>Player Name</string>
                 </property>
@@ -186,20 +190,15 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <spacer name="verticalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
+            <widget class="QWidget" name="verticalWidget" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>2</verstretch>
+              </sizepolicy>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
+             <layout class="QVBoxLayout" name="verticalLayout_9"/>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="JoinRoom">
@@ -248,6 +247,12 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
                 <property name="placeholderText">
                  <string>IP</string>
                 </property>
@@ -260,6 +265,12 @@
                   <horstretch>4</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
+                </property>
+                <property name="horizontalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOff</enum>
                 </property>
                 <property name="placeholderText">
                  <string>Port</string>

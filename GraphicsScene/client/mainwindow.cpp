@@ -28,6 +28,7 @@ MainWindow::MainWindow(Client* client, QWidget *parent)
     view->setScene(scene);
 
     connect(logic, &ClientLogic::dataChanged, this, &MainWindow::updateScene);
+    connect(logic, &ClientLogic::gameWon, this, &MainWindow::endGame);
 }
 
 MainWindow::~MainWindow()
@@ -56,7 +57,7 @@ void MainWindow::updateScene() {
 
     if (currPlayer == it2->toString()) scene->setCurrent(0);
     scene->changeHand(0, hands[it2->toString()].toArray());
-    scene->setLastPlay(0, lastPlays[it2->toString()].toArray());
+    scene->setLastPlay(0, QJsonArray());
     if (hands.size() == 2) {
         if (++it2 == names.end()) it2 = names.begin();
         scene->setName(2, it2->toString());
@@ -91,6 +92,13 @@ void MainWindow::updateScene() {
         scene->setLastPlay(3, lastPlays[it2->toString()].toArray());
         if (currPlayer == it2->toString()) scene->setCurrent(3);
     }
+}
+
+void MainWindow::endGame(QString string) {
+    QMessageBox* msg = new QMessageBox();
+    msg->setText(string);
+    msg->show();
+    this->close();
 }
 
 /*

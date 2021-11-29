@@ -1,19 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'gameengine.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.11)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
 #include "../server/gameengine.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gameengine.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.2.1. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.12.11. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,19 +21,22 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameEngine_t {
-    const uint offsetsAndSize[12];
+    QByteArrayData data[6];
     char stringdata0[44];
 };
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_GameEngine_t, stringdata0) + ofs), len 
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_GameEngine_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
 static const qt_meta_stringdata_GameEngine_t qt_meta_stringdata_GameEngine = {
     {
-QT_MOC_LITERAL(0, 10), // "GameEngine"
-QT_MOC_LITERAL(11, 11), // "recieveData"
-QT_MOC_LITERAL(23, 0), // ""
-QT_MOC_LITERAL(24, 7), // "Worker*"
-QT_MOC_LITERAL(32, 6), // "sender"
-QT_MOC_LITERAL(39, 4) // "data"
+QT_MOC_LITERAL(0, 0, 10), // "GameEngine"
+QT_MOC_LITERAL(1, 11, 11), // "recieveData"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 7), // "Worker*"
+QT_MOC_LITERAL(4, 32, 6), // "sender"
+QT_MOC_LITERAL(5, 39, 4) // "data"
 
     },
     "GameEngine\0recieveData\0\0Worker*\0sender\0"
@@ -45,7 +47,7 @@ QT_MOC_LITERAL(39, 4) // "data"
 static const uint qt_meta_data_GameEngine[] = {
 
  // content:
-      10,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        1,   14, // methods
@@ -55,8 +57,8 @@ static const uint qt_meta_data_GameEngine[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    2,   20,    2, 0x0a,    1 /* Public */,
+ // slots: name, argc, parameters, tag, flags
+       1,    2,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, QMetaType::QJsonObject,    4,    5,
@@ -68,37 +70,31 @@ void GameEngine::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<GameEngine *>(_o);
-        (void)_t;
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->recieveData((*reinterpret_cast< Worker*(*)>(_a[1])),(*reinterpret_cast< const QJsonObject(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
-        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 0:
             switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Worker* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< Worker* >(); break;
             }
             break;
         }
     }
 }
 
-const QMetaObject GameEngine::staticMetaObject = { {
-    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_meta_stringdata_GameEngine.offsetsAndSize,
+QT_INIT_METAOBJECT const QMetaObject GameEngine::staticMetaObject = { {
+    &QObject::staticMetaObject,
+    qt_meta_stringdata_GameEngine.data,
     qt_meta_data_GameEngine,
     qt_static_metacall,
     nullptr,
-qt_incomplete_metaTypeArray<qt_meta_stringdata_GameEngine_t
-, QtPrivate::TypeAndForceComplete<GameEngine, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<Worker *, std::false_type>, QtPrivate::TypeAndForceComplete<const QJsonObject &, std::false_type>
-
-
->,
     nullptr
 } };
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'startingwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.2.1
+** Created by: Qt User Interface Compiler version 5.12.11
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -34,13 +34,15 @@ public:
     QWidget *horizontalWidget_2;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout_3;
-    QSpacerItem *verticalSpacer;
+    QWidget *verticalWidget1;
+    QVBoxLayout *verticalLayout_7;
     QPushButton *CreateRoom;
     QWidget *horizontalWidget_3;
     QHBoxLayout *horizontalLayout_4;
     QPlainTextEdit *PlayerNameBox;
     QVBoxLayout *verticalLayout_4;
-    QSpacerItem *verticalSpacer_2;
+    QWidget *verticalWidget2;
+    QVBoxLayout *verticalLayout_9;
     QPushButton *JoinRoom;
     QWidget *horizontalWidget_31;
     QHBoxLayout *horizontalLayout_3;
@@ -126,17 +128,25 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        verticalWidget1 = new QWidget(horizontalWidget_2);
+        verticalWidget1->setObjectName(QString::fromUtf8("verticalWidget1"));
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(2);
+        sizePolicy4.setHeightForWidth(verticalWidget1->sizePolicy().hasHeightForWidth());
+        verticalWidget1->setSizePolicy(sizePolicy4);
+        verticalLayout_7 = new QVBoxLayout(verticalWidget1);
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
 
-        verticalLayout_3->addItem(verticalSpacer);
+        verticalLayout_3->addWidget(verticalWidget1);
 
         CreateRoom = new QPushButton(horizontalWidget_2);
         CreateRoom->setObjectName(QString::fromUtf8("CreateRoom"));
-        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Ignored);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(8);
-        sizePolicy4.setHeightForWidth(CreateRoom->sizePolicy().hasHeightForWidth());
-        CreateRoom->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Minimum, QSizePolicy::Ignored);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(8);
+        sizePolicy5.setHeightForWidth(CreateRoom->sizePolicy().hasHeightForWidth());
+        CreateRoom->setSizePolicy(sizePolicy5);
         QFont font1;
         font1.setPointSize(10);
         CreateRoom->setFont(font1);
@@ -145,11 +155,8 @@ public:
 
         horizontalWidget_3 = new QWidget(horizontalWidget_2);
         horizontalWidget_3->setObjectName(QString::fromUtf8("horizontalWidget_3"));
-        QSizePolicy sizePolicy5(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(2);
-        sizePolicy5.setHeightForWidth(horizontalWidget_3->sizePolicy().hasHeightForWidth());
-        horizontalWidget_3->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(horizontalWidget_3->sizePolicy().hasHeightForWidth());
+        horizontalWidget_3->setSizePolicy(sizePolicy4);
         horizontalLayout_4 = new QHBoxLayout(horizontalWidget_3);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -160,6 +167,9 @@ public:
         sizePolicy6.setVerticalStretch(0);
         sizePolicy6.setHeightForWidth(PlayerNameBox->sizePolicy().hasHeightForWidth());
         PlayerNameBox->setSizePolicy(sizePolicy6);
+        PlayerNameBox->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        PlayerNameBox->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        PlayerNameBox->setTabChangesFocus(true);
 
         horizontalLayout_4->addWidget(PlayerNameBox);
 
@@ -171,9 +181,14 @@ public:
 
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        verticalWidget2 = new QWidget(horizontalWidget_2);
+        verticalWidget2->setObjectName(QString::fromUtf8("verticalWidget2"));
+        sizePolicy4.setHeightForWidth(verticalWidget2->sizePolicy().hasHeightForWidth());
+        verticalWidget2->setSizePolicy(sizePolicy4);
+        verticalLayout_9 = new QVBoxLayout(verticalWidget2);
+        verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
 
-        verticalLayout_4->addItem(verticalSpacer_2);
+        verticalLayout_4->addWidget(verticalWidget2);
 
         JoinRoom = new QPushButton(horizontalWidget_2);
         JoinRoom->setObjectName(QString::fromUtf8("JoinRoom"));
@@ -188,8 +203,8 @@ public:
 
         horizontalWidget_31 = new QWidget(horizontalWidget_2);
         horizontalWidget_31->setObjectName(QString::fromUtf8("horizontalWidget_31"));
-        sizePolicy5.setHeightForWidth(horizontalWidget_31->sizePolicy().hasHeightForWidth());
-        horizontalWidget_31->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(horizontalWidget_31->sizePolicy().hasHeightForWidth());
+        horizontalWidget_31->setSizePolicy(sizePolicy4);
         horizontalLayout_3 = new QHBoxLayout(horizontalWidget_31);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -200,6 +215,8 @@ public:
         sizePolicy8.setVerticalStretch(0);
         sizePolicy8.setHeightForWidth(IPBox->sizePolicy().hasHeightForWidth());
         IPBox->setSizePolicy(sizePolicy8);
+        IPBox->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        IPBox->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         horizontalLayout_3->addWidget(IPBox);
 
@@ -210,6 +227,8 @@ public:
         sizePolicy9.setVerticalStretch(0);
         sizePolicy9.setHeightForWidth(PortBox->sizePolicy().hasHeightForWidth());
         PortBox->setSizePolicy(sizePolicy9);
+        PortBox->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        PortBox->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         horizontalLayout_3->addWidget(PortBox);
 
@@ -287,16 +306,16 @@ public:
 
     void retranslateUi(QWidget *StartingWindow)
     {
-        StartingWindow->setWindowTitle(QCoreApplication::translate("StartingWindow", "Form", nullptr));
+        StartingWindow->setWindowTitle(QApplication::translate("StartingWindow", "Form", nullptr));
         Title->setText(QString());
-        label->setText(QCoreApplication::translate("StartingWindow", "Big TwUNO", nullptr));
-        CreateRoom->setText(QCoreApplication::translate("StartingWindow", "Create Room", nullptr));
-        PlayerNameBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "Player Name", nullptr));
-        JoinRoom->setText(QCoreApplication::translate("StartingWindow", "Join Room", nullptr));
-        IPBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "IP", nullptr));
-        PortBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "Port", nullptr));
-        RulesButton->setText(QCoreApplication::translate("StartingWindow", "Rules", nullptr));
-        CreditsButton->setText(QCoreApplication::translate("StartingWindow", "Credits", nullptr));
+        label->setText(QApplication::translate("StartingWindow", "Big TwUNO", nullptr));
+        CreateRoom->setText(QApplication::translate("StartingWindow", "Create Room", nullptr));
+        PlayerNameBox->setPlaceholderText(QApplication::translate("StartingWindow", "Player Name", nullptr));
+        JoinRoom->setText(QApplication::translate("StartingWindow", "Join Room", nullptr));
+        IPBox->setPlaceholderText(QApplication::translate("StartingWindow", "IP", nullptr));
+        PortBox->setPlaceholderText(QApplication::translate("StartingWindow", "Port", nullptr));
+        RulesButton->setText(QApplication::translate("StartingWindow", "Rules", nullptr));
+        CreditsButton->setText(QApplication::translate("StartingWindow", "Credits", nullptr));
     } // retranslateUi
 
 };

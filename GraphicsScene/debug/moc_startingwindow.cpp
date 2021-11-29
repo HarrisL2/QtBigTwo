@@ -1,19 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'startingwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.11)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
 #include "../startingwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'startingwindow.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 68
-#error "This file was generated using the moc from 6.2.1. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.12.11. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,20 +21,23 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_StartingWindow_t {
-    const uint offsetsAndSize[14];
+    QByteArrayData data[7];
     char stringdata0[121];
 };
-#define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_StartingWindow_t, stringdata0) + ofs), len 
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_StartingWindow_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
 static const qt_meta_stringdata_StartingWindow_t qt_meta_stringdata_StartingWindow = {
     {
-QT_MOC_LITERAL(0, 14), // "StartingWindow"
-QT_MOC_LITERAL(15, 21), // "on_CreateRoom_clicked"
-QT_MOC_LITERAL(37, 0), // ""
-QT_MOC_LITERAL(38, 19), // "on_JoinRoom_clicked"
-QT_MOC_LITERAL(58, 24), // "on_CreditsButton_clicked"
-QT_MOC_LITERAL(83, 14), // "clientRecieved"
-QT_MOC_LITERAL(98, 22) // "clientConnectionFailed"
+QT_MOC_LITERAL(0, 0, 14), // "StartingWindow"
+QT_MOC_LITERAL(1, 15, 21), // "on_CreateRoom_clicked"
+QT_MOC_LITERAL(2, 37, 0), // ""
+QT_MOC_LITERAL(3, 38, 19), // "on_JoinRoom_clicked"
+QT_MOC_LITERAL(4, 58, 24), // "on_CreditsButton_clicked"
+QT_MOC_LITERAL(5, 83, 14), // "clientRecieved"
+QT_MOC_LITERAL(6, 98, 22) // "clientConnectionFailed"
 
     },
     "StartingWindow\0on_CreateRoom_clicked\0"
@@ -47,7 +49,7 @@ QT_MOC_LITERAL(98, 22) // "clientConnectionFailed"
 static const uint qt_meta_data_StartingWindow[] = {
 
  // content:
-      10,       // revision
+       8,       // revision
        0,       // classname
        0,    0, // classinfo
        5,   14, // methods
@@ -57,12 +59,12 @@ static const uint qt_meta_data_StartingWindow[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   44,    2, 0x08,    1 /* Private */,
-       3,    0,   45,    2, 0x08,    2 /* Private */,
-       4,    0,   46,    2, 0x08,    3 /* Private */,
-       5,    1,   47,    2, 0x08,    4 /* Private */,
-       6,    0,   50,    2, 0x08,    6 /* Private */,
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   39,    2, 0x08 /* Private */,
+       3,    0,   40,    2, 0x08 /* Private */,
+       4,    0,   41,    2, 0x08 /* Private */,
+       5,    1,   42,    2, 0x08 /* Private */,
+       6,    0,   45,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -78,7 +80,7 @@ void StartingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<StartingWindow *>(_o);
-        (void)_t;
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_CreateRoom_clicked(); break;
         case 1: _t->on_JoinRoom_clicked(); break;
@@ -90,18 +92,12 @@ void StartingWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     }
 }
 
-const QMetaObject StartingWindow::staticMetaObject = { {
-    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_meta_stringdata_StartingWindow.offsetsAndSize,
+QT_INIT_METAOBJECT const QMetaObject StartingWindow::staticMetaObject = { {
+    &QWidget::staticMetaObject,
+    qt_meta_stringdata_StartingWindow.data,
     qt_meta_data_StartingWindow,
     qt_static_metacall,
     nullptr,
-qt_incomplete_metaTypeArray<qt_meta_stringdata_StartingWindow_t
-, QtPrivate::TypeAndForceComplete<StartingWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QJsonObject &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
-
-
->,
     nullptr
 } };
 
@@ -130,7 +126,7 @@ int StartingWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+            *reinterpret_cast<int*>(_a[0]) = -1;
         _id -= 5;
     }
     return _id;

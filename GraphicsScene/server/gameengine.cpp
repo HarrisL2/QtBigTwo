@@ -1,5 +1,6 @@
 #include <QRandomGenerator>
 #include <QtDebug>
+#include <QThread>
 
 #include "gameengine.h"
 #include "../client/playingcard.h"
@@ -52,9 +53,9 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
         lastPlays[playerNames[i].toString()] = newPlay;
     }
     currentPlayer = playerNames.begin();
-    for (int i = 0; i < int(playerNames.size()*QRandomGenerator::global()->generateDouble()); i++) {
+    /*for (int i = 0; i < int(playerNames.size()*QRandomGenerator::global()->generateDouble()); i++) {
         currentPlayer++;
-    }
+    }*/
     lastPlayer = currentPlayer;
     nextPlayer = currentPlayer+1 == playerNames.end() ? playerNames.begin() : currentPlayer+1;
     turnDirection = 1;
@@ -274,6 +275,10 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
  */
 
 void GameEngine::processMove(Combination* move) {
+    if (move->getType() == Combination::Type::PASS) {
+        QJsonArray empty;
+        lastPlays[currentPlayer->toString()] = empty;
+    }
     lastPlays[currentPlayer->toString()] = move->toJsonArray();
     QVector<BaseCard*> cards = move->getSorted();
     for (int i = 0; i < cards.size(); i++) {
@@ -286,6 +291,8 @@ void GameEngine::processMove(Combination* move) {
         } else if (cards[i]->getEffect() == BaseCard::Effect::DRAWTWO) {
             playerDraw(nextPlayer->toString());
             playerDraw(nextPlayer->toString());
+            QJsonArray empty;
+            lastPlays[nextPlayer->toString()] = empty;
             advanceNextPlayer();
         }
     }
@@ -296,6 +303,10 @@ void GameEngine::processMove(Combination* move) {
     playerHands[currentPlayer->toString()] = playerhand.toJsonArray();
     if (cards.size() > 0) {
         lastPlayer = currentPlayer;
+    }
+    if (playerhand.numCards() == 0) {
+        winGame(currentPlayer->toString());
+        return;
     }
     if (nextPlayer == lastPlayer) {
         for (int i = 0; i < playerNames.size(); i++) {
@@ -345,6 +356,13 @@ void GameEngine::playerDraw(QString player) {
     QJsonArray tempHand = playerHands[player].toArray();
     tempHand.append(deck.takeLast()->getID());
     playerHands[player] = tempHand;
+}
+
+void GameEngine::winGame(QString player) {
+    QJsonObject data;
+    data["type"] = "win";
+    data["winner"] = player;
+    server->broadcast(data);
 }
 
 /*

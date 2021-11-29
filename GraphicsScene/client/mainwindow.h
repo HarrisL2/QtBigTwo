@@ -22,6 +22,7 @@ public:
 
 private slots:
     void updateScene();
+    void endGame(QString);
 
 private:
     Ui::MainWindow *ui;

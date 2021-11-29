@@ -38,6 +38,7 @@ private:
     void playerDraw(QString);
     void updateAll();
     void processMove(Combination*);
+    void winGame(QString);
     Combination* getAIMove(Hand, Combination*) const;
 };
 
