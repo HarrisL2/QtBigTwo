@@ -94,7 +94,7 @@ void StartingWindow::on_JoinRoom_clicked() {
 
 void StartingWindow::on_CreditsButton_clicked() {
     QMessageBox* msg = new QMessageBox;
-    msg->setText("Made by Lau Yan Hei, Lau Sin Yee and Chan Chun Wai, 2021.");
+    msg->setText("Made by Lau Yan Hei, Lau Sin Yee and Chan Wai Chun, 2021.");
     msg->show();
 }
 
