@@ -8,13 +8,19 @@
  *  @return: N/A
  */
 
-
 PlayingCard::PlayingCard(int id) :
     ID(id),
     number((id-1)/4 + 3 > 13 ? (id-1)/4 - 10: (id-1)/4 + 3)
 {
     suit = static_cast<BaseCard::Suit>( id%4 == 0? 4 : id%4 );
 }
+
+/*
+ *  PlayingCard::get<var>()
+ *  @funct: return the corresponding variable for the card
+ *  @param: N/A
+ *  @return: var
+ */
 
 BaseCard::Type PlayingCard::getType() const {
     return BaseCard::Type::PLAYING;

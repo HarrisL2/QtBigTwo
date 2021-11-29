@@ -15,6 +15,13 @@ UNOCard::UNOCard(int id) :
 
 }
 
+/*
+ *  UNOCard::get<var>()
+ *  @funct: return the required variable
+ *  @param: N/A
+ *  @return: var
+ */
+
 BaseCard::Type UNOCard::getType() const {
     return BaseCard::Type::UNO;
 }

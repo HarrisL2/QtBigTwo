@@ -6,6 +6,13 @@ BaseCard::BaseCard()
 
 }
 
+/*
+ *  BaseCard::Suit BaseCard::get<var>()
+ *  @funct: return default value for Suit, Color and Effect for each card
+ *  @param: N/A
+ *  @return: default value for Suit, Color and Effect
+ */
+
 BaseCard::Suit BaseCard::getSuit() const {
     return BaseCard::Suit::NOSUIT;
 }
