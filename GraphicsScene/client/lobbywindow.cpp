@@ -37,6 +37,13 @@ LobbyWindow::LobbyWindow(Client* client,
     ui->PlayerListText->setText(playerList);
     ui->PlayerCount->setText(QString::number(maxPlayerCount));
     ui->AICount->setText(QString::number(maxAICount));
+
+    QPixmap up {":/cards/png/up.png"};
+    QPixmap down {":/cards/png/down.png"};
+    ui->IncreaseAI->setIcon(up);
+    ui->DecreaseAI->setIcon(down);
+    ui->IncreasePlayers->setIcon(up);
+    ui->DecreasePlayers->setIcon(down);
 }
 
 LobbyWindow::~LobbyWindow()

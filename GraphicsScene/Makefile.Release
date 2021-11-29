@@ -223,6 +223,8 @@ release/qrc_resources.cpp: resources.qrc \
 		png/152.png \
 		png/22.png \
 		png/139.png \
+		png/icon_join_room.png \
+		png/logo.png \
 		png/111.png \
 		png/a2.png \
 		png/15.png \
@@ -241,6 +243,7 @@ release/qrc_resources.cpp: resources.qrc \
 		png/143.png \
 		png/119.png \
 		png/47.png \
+		png/up.png \
 		png/12.png \
 		png/154.png \
 		png/104.png \
@@ -266,12 +269,14 @@ release/qrc_resources.cpp: resources.qrc \
 		png/141.png \
 		png/146.png \
 		png/1.png \
+		png/icon_rules.png \
 		png/43.png \
 		png/102.png \
 		png/100.png \
 		png/114.png \
 		png/41.png \
 		png/13.png \
+		png/down.png \
 		png/16.png \
 		png/117.png \
 		png/110.png \
@@ -282,6 +287,7 @@ release/qrc_resources.cpp: resources.qrc \
 		png/140.png \
 		png/34.png \
 		png/121.png \
+		png/icon_create_room.png \
 		png/20.png \
 		png/a-1.png \
 		png/106.png \

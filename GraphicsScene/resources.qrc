@@ -118,5 +118,11 @@
         <file>png/a-3.png</file>
         <file>png/a4.png</file>
         <file>png/a-4.png</file>
+        <file>png/down.png</file>
+        <file>png/icon_create_room.png</file>
+        <file>png/icon_join_room.png</file>
+        <file>png/icon_rules.png</file>
+        <file>png/logo.png</file>
+        <file>png/up.png</file>
     </qresource>
 </RCC>
