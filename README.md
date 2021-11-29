@@ -9,16 +9,16 @@ Download the GraphicsScene folder. Open and run GraphicsScene.pro in QT Creator.
 
 There are 4 buttons:
 
-- Create Room: For the 1st player to create a room for other players to join
+- ```Create Room```: For the 1st player to create a room for other players to join
 
-- Join Room: For the 2nd to 4th player to join a specific room created by the 1st player
+- ```Join Room```: For the 2nd to 4th player to join a specific room created by the 1st player
 
-- Rules: Rules of the game Big Two amd Big TwUNO
+- ```Rules```: Rules of the game Big Two amd Big TwUNO
 
-- Credits: Credits to developer
+- ```Credits```: Credits to developer
 
-To create a room, 1st player needs to enter the Player Name and press Create Room button.
-To join a room, players need to input the Player Name, and the IP and Port shown on the Lobby Window of the 1st player, then press the Join Room button.
+To create a room, 1st player needs to enter the Player Name and press ```Create Room``` button.
+To join a room, players need to input the Player Name, and the IP and Port shown on the Lobby Window of the 1st player, then press the ```Join Room``` button.
 
 #### In the Lobby:
 
@@ -32,8 +32,12 @@ In the above, the IP is ```192.168.56.1``` and the port is ```61312```.
 
 Left hand side of the Lobby Window shows the names of the current human players in the room. 
 
-After all the players are ready, the 1st player can press the Start Game button to start the game.
+After all the players are ready, the 1st player can press the ```Start Game``` button to start the game.
 
 #### In the Main Window:
 
-You can see 
+![Main Window](mainwindow.png)
+
+Above is an image of the Main Window. The bottom shows your hand. The four bars in the middle indicates the current player by green. The cards in front of other players are the last play of them. The 4 red arrows indicates the direction of turning. 
+
+**To play cards:** Use the mouse to select the cards you want to play and press ```space bar``` on the keyBoard to play.
