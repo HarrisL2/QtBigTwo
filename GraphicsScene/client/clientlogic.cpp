@@ -4,12 +4,26 @@
 #include <QMessageBox>
 #include <QtDebug>
 
+/*
+ *  ClientLogic::ClientLogic(Client* client)
+ *  @funct: creates a clientlogic item
+ *  @param: client object
+ *  @return: N/A
+ */
+
 ClientLogic::ClientLogic(Client* client) :
     client(client),
     name(client->getName())
 {
     connect(client, &Client::dataRecieved, this, &ClientLogic::recieveData);
 }
+
+/*
+ *  ClientLogic::recieveData(const QJsonObject& data)
+ *  @funct: updates member variables with data recieved from client
+ *  @param: data from client
+ *  @return: N/A
+ */
 
 void ClientLogic::recieveData(const QJsonObject& data) {
     qDebug() << data;
@@ -23,6 +37,13 @@ void ClientLogic::recieveData(const QJsonObject& data) {
     }
     emit dataChanged();
 }
+
+/*
+ *  ClientLogic::get<var> ()
+ *  @funct: returns corresponding variable
+ *  @param: N/A
+ *  @return: variable
+ */
 
 QString ClientLogic::getName() const {
     return name;
@@ -47,6 +68,13 @@ QString ClientLogic::getCurrPlayer() const {
 int ClientLogic::getDir() const {
     return turnDir;
 }
+
+/*
+ *  ClientLogic::processPlay(QVector<int> input)
+ *  @funct: checks if play is valid and sends play to server if valid
+ *  @param: input : vector of ints representing cards
+ *  @return: N/A
+ */
 
 void ClientLogic::processPlay(QVector<int> input) {
     Combination* comb = Combination::createCombination(input);
@@ -98,6 +126,13 @@ void ClientLogic::processPlay(QVector<int> input) {
         }
     }
 }
+
+/*
+ *  ClientLogic::sendPlay(Combination* comb)
+ *  @funct: sends play to server
+ *  @param: comb : combination of cards
+ *  @return: N/A
+ */
 
 void ClientLogic::sendPlay(Combination* comb) {
     QJsonObject data;

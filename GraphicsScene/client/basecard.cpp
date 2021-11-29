@@ -18,6 +18,13 @@ BaseCard::Effect BaseCard::getEffect() const {
     return BaseCard::Effect::NOEFFECT;
 }
 
+/*
+ *  operator>(const BaseCard& lhs, const BaseCard& rhs)
+ *  @funct: returns true if lhs can be played after rhs
+ *  @param: lhs card and rhs card
+ *  @return: truth value
+ */
+
 bool operator>(const BaseCard& lhs, const BaseCard& rhs) {
     int lhsNum = lhs.getNumber(), rhsNum = rhs.getNumber();
     if ((lhsNum <= 2 ? lhsNum + 13 : lhsNum ) > (rhsNum <= 2 ? rhsNum + 13 : rhsNum)) {

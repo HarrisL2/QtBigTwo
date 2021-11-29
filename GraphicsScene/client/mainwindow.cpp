@@ -9,6 +9,13 @@
 
 #include "../ui/tablegraphics.h"
 
+/*
+ *  MainWindow::MainWindow(Client* client, QWidget *parent)
+ *  @funct: creates a main game window with card UIs
+ *  @param: client: client object
+ *  @return: N/A
+ */
+
 MainWindow::MainWindow(Client* client, QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -27,6 +34,13 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+/*
+ *  MainWindow::updateScene()
+ *  @funct: updates the scene with corresponding data from the client logic
+ *  @param: N/A
+ *  @return: N/A
+ */
 
 void MainWindow::updateScene() {
     QJsonObject hands = logic->getHands();
@@ -79,11 +93,25 @@ void MainWindow::updateScene() {
     }
 }
 
+/*
+ *  MainWindow::keyPressEvent(QKeyEvent *event)
+ *  @funct: sends play to clientlogic if spacebar is pressed
+ *  @param: event
+ *  @return: N/A
+ */
+
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Space) {
         logic->processPlay(scene->getNextPlay());
     }
 }
+
+/*
+ *  MainWindow::resizeEvent(QResizeEvent *event)
+ *  @funct: sends resize event to scene
+ *  @param: event
+ *  @return: N/A
+ */
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event);

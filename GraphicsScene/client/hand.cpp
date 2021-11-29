@@ -2,6 +2,14 @@
 #include "playingcard.h"
 #include "unocard.h"
 
+/*
+ *  Hand::Hand(var)
+ *  @funct: creates a combination from the variable
+ *  @param: var
+ *  @return: N/A
+ */
+
+
 Hand::Hand(const QVector<BaseCard*>& cards)
 {
     this->cards = cards;
@@ -31,6 +39,14 @@ Hand::Hand(const QJsonArray& ids) {
     sort();
 }
 
+/*
+ *  Hand::toJsonArray()
+ *  @funct: returns hand as a JsonArray
+ *  @param: N/A
+ *  @return: JsonArray
+ */
+
+
 QJsonArray Hand::toJsonArray() {
     QJsonArray arr;
     for (int i = 0; i < cards.size(); i++) {
@@ -38,6 +54,13 @@ QJsonArray Hand::toJsonArray() {
     }
     return arr;
 }
+
+/*
+ *  Hand::add/removeCard()
+ *  @funct: add/removes the corresponding card to the hand
+ *  @param: card to add/remove
+ *  @return: N/A
+ */
 
 void Hand::addCard(BaseCard* card) {
     cards.append(card);
@@ -51,6 +74,13 @@ void Hand::removeCard(int id) {
         }
     }
 }
+
+/*
+ *  Hand::sort()
+ *  @funct: sort the hand of cards from small to large
+ *  @param: N/A
+ *  @return: N/A
+ */
 
 void Hand::sort() {
     for (int i = 0; i < cards.size(); i++){
@@ -73,6 +103,14 @@ void Hand::sort() {
         }
     }
 }
+
+/*
+ *  Hand::num<var>(<type>)
+ *  @funct: return the number of cards that fit the type
+ *  @param: type
+ *  @return: int
+ */
+
 
 int Hand::numCards() const {
     return cards.size();
@@ -117,6 +155,14 @@ int Hand::numNum(int number) const {
     }
     return num;
 }
+
+/*
+ *  Hand::get<var>()
+ *  @funct: return all cards that fit the citeria
+ *  @param: type
+ *  @return: vector of BaseCard*
+ */
+
 
 QVector<BaseCard*> Hand::getCards() const {
     return cards;

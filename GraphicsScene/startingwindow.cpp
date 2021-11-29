@@ -9,6 +9,13 @@
 #include <QMessageBox>
 #include <QtDebug>
 
+/*
+ *  StartingWindow::StartingWindow(QWidget *parent)
+ *  @funct:  creates the StartingWindow object and initializes the GUI
+ *  @param:  parent: nullptr
+ *  @return: N/A
+ */
+
 StartingWindow::StartingWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StartingWindow),
@@ -25,6 +32,13 @@ StartingWindow::~StartingWindow()
     delete ui;
 }
 
+/*
+ *  StartingWindow::on_CreateRoom_clicked()
+ *  @funct:  creates a server object and opens a new window
+ *  @param:  N/A
+ *  @return: N/A
+ */
+
 void StartingWindow::on_CreateRoom_clicked() {
     if (!ui->PlayerNameBox->toPlainText().isEmpty()) {
         server = new Server();
@@ -39,6 +53,14 @@ void StartingWindow::on_CreateRoom_clicked() {
         msg.exec();
     }
 }
+
+/*
+ *  StartingWindow::on_JoinRoom_clicked()
+ *  @funct:  creates a client and attempts to connect to the server
+ *  @param:  N/A
+ *  @return: N/A
+ */
+
 
 void StartingWindow::on_JoinRoom_clicked() {
     if (ui->PlayerNameBox->toPlainText().isEmpty()) {
@@ -63,9 +85,25 @@ void StartingWindow::on_JoinRoom_clicked() {
     }
 }
 
+/*
+ *  StartingWindow::on_CreateRoom_clicked()
+ *  @funct:  shows credits
+ *  @param:  N/A
+ *  @return: N/A
+ */
+
+
 void StartingWindow::on_CreditsButton_clicked() {
 
 }
+
+/*
+ *  StartingWindow::clientRecieved(const QJsonObject& data)
+ *  @funct:  opens a new window if connection is successful or shows error if name is repeated
+ *  @param:  data from client
+ *  @return: N/A
+ */
+
 
 void StartingWindow::clientRecieved(const QJsonObject& data) {
     if (data["type"] == "nameList") {
@@ -82,6 +120,13 @@ void StartingWindow::clientRecieved(const QJsonObject& data) {
         client->deleteLater();
     }
 }
+
+/*
+ *  StartingWindow::clientConnectionFailed()
+ *  @funct:  shows error if address is invalid
+ *  @param:  N/A
+ *  @return: N/A
+ */
 
 void StartingWindow::clientConnectionFailed() {
     QMessageBox msg;

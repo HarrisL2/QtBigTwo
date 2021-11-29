@@ -5,6 +5,13 @@
 #include "playingcard.h"
 #include "unocard.h"
 
+/*
+ *  Combination::createCombination(var)
+ *  @funct: creates a combination from the given array and returns null if invalid
+ *  @param: var
+ *  @return: pointer to combination or nullptr if invalid
+ */
+
 Combination* Combination::createCombination(const QJsonArray& arr) {
     QVector<int> ids;
     for (int i = 0; i < arr.size(); i++) {
@@ -136,6 +143,14 @@ Combination* Combination::createCombination(QVector<BaseCard*> cards) {
     return nullptr;
 }
 
+/*
+ *  Combination::Combination(QVector<BaseCard*> cards, Type type)
+ *  @funct: creates a combination as corresponding type
+ *  @param: cards : cards in the combination
+ *          type : type of the combination
+ *  @return: N/A
+ */
+
 Combination::Combination(QVector<BaseCard*> cards, Type type) :
     type(type),
     cards(cards),
@@ -162,6 +177,13 @@ Combination::Combination(QVector<BaseCard*> cards, Type type) :
     }
 }
 
+/*
+ *  Combination::get<var>()
+ *  @funct: returns corresponding variable
+ *  @param: N/A
+ *  @return: var
+ */
+
 QVector<BaseCard*> Combination::getCards() const {
     return cards;
 }
@@ -186,6 +208,13 @@ int Combination::size() const {
     return cards.size();
 }
 
+/*
+ *  Combination::toJsonArray()
+ *  @funct: returns combination as a JsonArray
+ *  @param: N/A
+ *  @return: QJsonArray
+ */
+
 QJsonArray Combination::toJsonArray() {
     QJsonArray arr;
     for (int i = 0; i < cards.size(); i++) {
@@ -193,6 +222,13 @@ QJsonArray Combination::toJsonArray() {
     }
     return arr;
 }
+
+/*
+ *  operator>(const Combination& lhs, const Combination& rhs)
+ *  @funct: returns true if lhs can be played after rhs
+ *  @param: lhs combination and rhs combination
+ *  @return: truth value
+ */
 
 bool operator>(const Combination& lhs, const Combination& rhs) {
     if (lhs.getType() != rhs.getType()) {

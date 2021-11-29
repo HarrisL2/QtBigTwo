@@ -7,6 +7,21 @@
 #include <QtDebug>
 #include <QMessageBox>
 
+/*
+ *  LobbyWindow::LobbyWindow(Client* client,
+                         QJsonArray playerNames,
+                         QString playerName,
+                         QWidget* parent,
+                         Server* server)
+ *  @funct:  creates a lobby window with the corresponding data
+ *  @param:  client: client object
+ *           playerNames: names of the players
+ *           playerName: name of this player
+ *           parent: N/A
+ *           server: server object
+ *  @return: N/A
+ */
+
 LobbyWindow::LobbyWindow(Client* client,
                          QJsonArray playerNames,
                          QString playerName,
@@ -51,6 +66,13 @@ LobbyWindow::~LobbyWindow()
     delete ui;
 }
 
+/*
+ *  LobbyWindow::clientRecieved(const QJsonObject& data)
+ *  @funct: updates namelist or starts game depending on data recieved
+ *  @param: data from client
+ *  @return: N/A
+ */
+
 void LobbyWindow::clientRecieved(const QJsonObject& data) {
     if (data["type"] == "nameList") {
         playerNames = data["list"].toArray();
@@ -70,6 +92,13 @@ void LobbyWindow::clientRecieved(const QJsonObject& data) {
         this->close();
     }
 }
+
+/*
+ *  LobbyWindow::on_GameStartButton_clicked()
+ *  @funct: starts game if conditions are valid
+ *  @param: N/A
+ *  @return: N/A
+ */
 
 void LobbyWindow::on_GameStartButton_clicked() {
     if (!isHost) {
@@ -98,6 +127,14 @@ void LobbyWindow::on_GameStartButton_clicked() {
         server->broadcast(data);
     }
 }
+
+/*
+ *  LobbyWindow::on_<button>_clicked()
+ *  @funct: performs the corresponding functions
+ *  @param: N/A
+ *  @return: N/A
+ */
+
 void LobbyWindow::on_IncreasePlayers_clicked() {
     if (maxPlayerCount < 4) {
         maxPlayerCount++;

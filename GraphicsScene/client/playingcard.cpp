@@ -1,5 +1,14 @@
 #include "playingcard.h"
 
+
+/*
+ *  PlayingCards::PlayingCard(int id)
+ *  @funct: create a playing card from given id
+ *  @param: N/A
+ *  @return: N/A
+ */
+
+
 PlayingCard::PlayingCard(int id) :
     ID(id),
     number((id-1)/4 + 3 > 13 ? (id-1)/4 - 10: (id-1)/4 + 3)
@@ -22,10 +31,3 @@ int PlayingCard::getNumber() const {
 int PlayingCard::getID() const {
     return ID;
 }
-
-//inline bool operator==(const PlayingCard& lhs, const PlayingCard& rhs){return (lhs.getID() == rhs.getID());}
-//inline bool operator!=(const PlayingCard& lhs, const PlayingCard& rhs){return !operator==(lhs,rhs);}
-//inline bool operator< (const PlayingCard& lhs, const PlayingCard& rhs){return (lhs.getID() < rhs.getID());}
-//inline bool operator> (const PlayingCard& lhs, const PlayingCard& rhs){return  operator< (rhs,lhs);}
-//inline bool operator<=(const PlayingCard& lhs, const PlayingCard& rhs){return !operator> (lhs,rhs);}
-//inline bool operator>=(const PlayingCard& lhs, const PlayingCard& rhs){return !operator< (lhs,rhs);}

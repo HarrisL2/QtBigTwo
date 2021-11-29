@@ -5,6 +5,14 @@
 #include "../client/playingcard.h"
 #include "../client/unocard.h"
 
+
+/*
+ *  GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, QObject* parent)
+ *  @funct: create game engine and initialize the game state
+ *  @param: ser: server object
+ *  @return: N/A
+ */
+
 GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, QObject* parent) :
     QObject(parent),
     server(ser),
@@ -61,6 +69,13 @@ GameEngine::GameEngine(Server* ser, int AICount, int playerCount, bool UNOMode, 
     }
     updateAll();
 }
+
+/*
+ *  GameEngine::getAIMove(Hand hand, Combination* lastPlay)
+ *  @funct: get a valid play given a hand and the last play
+ *  @param: hand, last play
+ *  @return: N/A
+ */
 
 Combination* GameEngine::getAIMove(Hand hand, Combination* lastPlay) const {
     QVector<BaseCard*> cards = hand.getCards();
@@ -226,6 +241,13 @@ Combination* GameEngine::getAIMove(Hand hand, Combination* lastPlay) const {
     return Combination::createCombination(QVector<int>(0));
 }
 
+/*
+ *  GameEngine::recieveData(Worker* sender, const QJsonObject& data)
+ *  @funct: recieve and process data from client
+ *  @param: client, data
+ *  @return: N/A
+ */
+
 void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
     assert(sender->getName() == currentPlayer->toString());
     qDebug() << data;
@@ -243,6 +265,13 @@ void GameEngine::recieveData(Worker* sender, const QJsonObject& data) {
     }
     updateAll();
 }
+
+/*
+ *  GameEngine::processMove(Combination* move)
+ *  @funct: process the given move and execute special function cards
+ *  @param: move
+ *  @return: N/A
+ */
 
 void GameEngine::processMove(Combination* move) {
     lastPlays[currentPlayer->toString()] = move->toJsonArray();
@@ -289,6 +318,14 @@ void GameEngine::processMove(Combination* move) {
         updateAll();
     }
 }
+
+/*
+ *  GameEngine::advanceNextPlayer()
+ *  @funct: advance the next player based on the turn direction
+ *  @param: N/A
+ *  @return: N/A
+ */
+
 void GameEngine::advanceNextPlayer() {
     if (turnDirection == 1) {
         nextPlayer = nextPlayer+1 == playerNames.end() ? playerNames.begin() : nextPlayer+1;
@@ -297,11 +334,25 @@ void GameEngine::advanceNextPlayer() {
     }
 }
 
+/*
+ *  GameEngine::playerDraw(QString player)
+ *  @funct: add a card to player's hand from deck
+ *  @param: player
+ *  @return: N/A
+ */
+
 void GameEngine::playerDraw(QString player) {
     QJsonArray tempHand = playerHands[player].toArray();
     tempHand.append(deck.takeLast()->getID());
     playerHands[player] = tempHand;
 }
+
+/*
+ *  GameEngine::updateAll()
+ *  @funct: update all players with corresponding information
+ *  @param: N/A
+ *  @return: N/A
+ */
 
 void GameEngine::updateAll() {
     for (int i = 0; i < playerNames.size(); i++) {

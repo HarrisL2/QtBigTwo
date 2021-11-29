@@ -1,5 +1,12 @@
 #include "unocard.h"
 
+/*
+ *  PlayingCards::PlayingCard(int id)
+ *  @funct: create a UNO card from given id
+ *  @param: N/A
+ *  @return: N/A
+ */
+
 UNOCard::UNOCard(int id) :
     ID(id),
     number((id-101)/4 + 3 > 13 ? (id-101)/4 - 10: (id-101)/4 + 3), \
