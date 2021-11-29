@@ -24,6 +24,3 @@ release/moc_gameengine.o
 release/moc_server.o
 release/moc_worker.o
 release/moc_startingwindow.o
-release/moc_tablegraphics.o
-release/moc_visualcard.o
-release/moc_visualhand.o

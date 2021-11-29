@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'startingwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.11
+** Created by: Qt User Interface Compiler version 6.2.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -72,6 +72,9 @@ public:
         sizePolicy.setVerticalStretch(20);
         sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
         label->setSizePolicy(sizePolicy);
+        QFont font;
+        font.setPointSize(22);
+        label->setFont(font);
         label->setScaledContents(true);
         label->setAlignment(Qt::AlignCenter);
 
@@ -99,6 +102,9 @@ public:
         sizePolicy2.setVerticalStretch(8);
         sizePolicy2.setHeightForWidth(CreateRoom->sizePolicy().hasHeightForWidth());
         CreateRoom->setSizePolicy(sizePolicy2);
+        QFont font1;
+        font1.setPointSize(10);
+        CreateRoom->setFont(font1);
 
         verticalLayout_3->addWidget(CreateRoom);
 
@@ -141,6 +147,7 @@ public:
         sizePolicy5.setVerticalStretch(8);
         sizePolicy5.setHeightForWidth(JoinRoom->sizePolicy().hasHeightForWidth());
         JoinRoom->setSizePolicy(sizePolicy5);
+        JoinRoom->setFont(font1);
 
         verticalLayout_4->addWidget(JoinRoom);
 
@@ -199,6 +206,7 @@ public:
         sizePolicy8.setVerticalStretch(0);
         sizePolicy8.setHeightForWidth(RulesButton->sizePolicy().hasHeightForWidth());
         RulesButton->setSizePolicy(sizePolicy8);
+        RulesButton->setFont(font1);
 
         verticalLayout_6->addWidget(RulesButton);
 
@@ -219,6 +227,7 @@ public:
         CreditsButton->setObjectName(QString::fromUtf8("CreditsButton"));
         sizePolicy8.setHeightForWidth(CreditsButton->sizePolicy().hasHeightForWidth());
         CreditsButton->setSizePolicy(sizePolicy8);
+        CreditsButton->setFont(font1);
 
         verticalLayout_5->addWidget(CreditsButton);
 
@@ -243,15 +252,15 @@ public:
 
     void retranslateUi(QWidget *StartingWindow)
     {
-        StartingWindow->setWindowTitle(QApplication::translate("StartingWindow", "Form", nullptr));
-        label->setText(QApplication::translate("StartingWindow", "Big Twuno", nullptr));
-        CreateRoom->setText(QApplication::translate("StartingWindow", "Create Room", nullptr));
-        PlayerNameBox->setPlaceholderText(QApplication::translate("StartingWindow", "Player Name", nullptr));
-        JoinRoom->setText(QApplication::translate("StartingWindow", "Join Room", nullptr));
-        IPBox->setPlaceholderText(QApplication::translate("StartingWindow", "IP", nullptr));
-        PortBox->setPlaceholderText(QApplication::translate("StartingWindow", "Port", nullptr));
-        RulesButton->setText(QApplication::translate("StartingWindow", "Rules", nullptr));
-        CreditsButton->setText(QApplication::translate("StartingWindow", "Credits", nullptr));
+        StartingWindow->setWindowTitle(QCoreApplication::translate("StartingWindow", "Form", nullptr));
+        label->setText(QCoreApplication::translate("StartingWindow", "Big TwUNO", nullptr));
+        CreateRoom->setText(QCoreApplication::translate("StartingWindow", "Create Room", nullptr));
+        PlayerNameBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "Player Name", nullptr));
+        JoinRoom->setText(QCoreApplication::translate("StartingWindow", "Join Room", nullptr));
+        IPBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "IP", nullptr));
+        PortBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "Port", nullptr));
+        RulesButton->setText(QCoreApplication::translate("StartingWindow", "Rules", nullptr));
+        CreditsButton->setText(QCoreApplication::translate("StartingWindow", "Credits", nullptr));
     } // retranslateUi
 
 };

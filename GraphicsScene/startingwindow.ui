@@ -25,8 +25,13 @@
           <verstretch>20</verstretch>
          </sizepolicy>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>22</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Big Twuno</string>
+         <string>Big TwUNO</string>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -70,6 +75,11 @@
                <horstretch>0</horstretch>
                <verstretch>8</verstretch>
               </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Create Room</string>
@@ -140,6 +150,11 @@
                <horstretch>0</horstretch>
                <verstretch>8</verstretch>
               </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Join Room</string>
@@ -236,6 +251,11 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Rules</string>
              </property>
@@ -284,6 +304,11 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
              </property>
              <property name="text">
               <string>Credits</string>

@@ -24,6 +24,3 @@ debug/moc_gameengine.o
 debug/moc_server.o
 debug/moc_worker.o
 debug/moc_startingwindow.o
-debug/moc_tablegraphics.o
-debug/moc_visualcard.o
-debug/moc_visualhand.o

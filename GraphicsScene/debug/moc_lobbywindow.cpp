@@ -1,18 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'lobbywindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.11)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../client/lobbywindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'lobbywindow.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.11. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.2.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,24 +22,21 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_LobbyWindow_t {
-    QByteArrayData data[8];
+    const uint offsetsAndSize[16];
     char stringdata0[153];
 };
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_LobbyWindow_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(offsetof(qt_meta_stringdata_LobbyWindow_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_LobbyWindow_t qt_meta_stringdata_LobbyWindow = {
     {
-QT_MOC_LITERAL(0, 0, 11), // "LobbyWindow"
-QT_MOC_LITERAL(1, 12, 14), // "clientRecieved"
-QT_MOC_LITERAL(2, 27, 0), // ""
-QT_MOC_LITERAL(3, 28, 26), // "on_GameStartButton_clicked"
-QT_MOC_LITERAL(4, 55, 26), // "on_IncreasePlayers_clicked"
-QT_MOC_LITERAL(5, 82, 26), // "on_DecreasePlayers_clicked"
-QT_MOC_LITERAL(6, 109, 21), // "on_IncreaseAI_clicked"
-QT_MOC_LITERAL(7, 131, 21) // "on_DecreaseAI_clicked"
+QT_MOC_LITERAL(0, 11), // "LobbyWindow"
+QT_MOC_LITERAL(12, 14), // "clientRecieved"
+QT_MOC_LITERAL(27, 0), // ""
+QT_MOC_LITERAL(28, 26), // "on_GameStartButton_clicked"
+QT_MOC_LITERAL(55, 26), // "on_IncreasePlayers_clicked"
+QT_MOC_LITERAL(82, 26), // "on_DecreasePlayers_clicked"
+QT_MOC_LITERAL(109, 21), // "on_IncreaseAI_clicked"
+QT_MOC_LITERAL(131, 21) // "on_DecreaseAI_clicked"
 
     },
     "LobbyWindow\0clientRecieved\0\0"
@@ -52,7 +50,7 @@ QT_MOC_LITERAL(7, 131, 21) // "on_DecreaseAI_clicked"
 static const uint qt_meta_data_LobbyWindow[] = {
 
  // content:
-       8,       // revision
+      10,       // revision
        0,       // classname
        0,    0, // classinfo
        6,   14, // methods
@@ -62,13 +60,13 @@ static const uint qt_meta_data_LobbyWindow[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: name, argc, parameters, tag, flags
-       1,    1,   44,    2, 0x08 /* Private */,
-       3,    0,   47,    2, 0x08 /* Private */,
-       4,    0,   48,    2, 0x08 /* Private */,
-       5,    0,   49,    2, 0x08 /* Private */,
-       6,    0,   50,    2, 0x08 /* Private */,
-       7,    0,   51,    2, 0x08 /* Private */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   50,    2, 0x08,    1 /* Private */,
+       3,    0,   53,    2, 0x08,    3 /* Private */,
+       4,    0,   54,    2, 0x08,    4 /* Private */,
+       5,    0,   55,    2, 0x08,    5 /* Private */,
+       6,    0,   56,    2, 0x08,    6 /* Private */,
+       7,    0,   57,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QJsonObject,    2,
@@ -85,7 +83,7 @@ void LobbyWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<LobbyWindow *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         switch (_id) {
         case 0: _t->clientRecieved((*reinterpret_cast< const QJsonObject(*)>(_a[1]))); break;
         case 1: _t->on_GameStartButton_clicked(); break;
@@ -98,12 +96,18 @@ void LobbyWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject LobbyWindow::staticMetaObject = { {
-    &QMainWindow::staticMetaObject,
-    qt_meta_stringdata_LobbyWindow.data,
+const QMetaObject LobbyWindow::staticMetaObject = { {
+    QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
+    qt_meta_stringdata_LobbyWindow.offsetsAndSize,
     qt_meta_data_LobbyWindow,
     qt_static_metacall,
     nullptr,
+qt_incomplete_metaTypeArray<qt_meta_stringdata_LobbyWindow_t
+, QtPrivate::TypeAndForceComplete<LobbyWindow, std::true_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QJsonObject &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+
+
+>,
     nullptr
 } };
 
@@ -132,7 +136,7 @@ int LobbyWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 6)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 6;
     }
     return _id;
