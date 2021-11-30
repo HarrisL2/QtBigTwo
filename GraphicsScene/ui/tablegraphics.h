@@ -7,6 +7,14 @@
 #include "visualhand.h"
 #include "../client/playingcard.h"
 
+/*
+ * TableGraphics is a QGraphicsScene with detailed
+ * UI elements for the use of a 2-4 player card-based
+ * game. It has turn direction indicators and also spaces
+ * for previous plays. It is also able to take mouse
+ * inputs and translate them to selected cards.
+ */
+
 class TableGraphics : public QGraphicsScene
 {
 

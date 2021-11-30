@@ -3,6 +3,11 @@
 
 #include "basecard.h"
 
+/*
+ * PlayingCard inherits from BaseCard to implement
+ * a standard Poker card.
+ */
+
 class PlayingCard : public BaseCard
 {
 public:

@@ -8,6 +8,12 @@
 
 #include "visualcard.h"
 
+/*
+ * VisualHand is a QGraphicItem that contains a variable amount
+ * of VisualCards that will dynamically resize to fit within
+ * it's boundaries.
+ */
+
 class VisualHand : public QGraphicsItem
 {
 

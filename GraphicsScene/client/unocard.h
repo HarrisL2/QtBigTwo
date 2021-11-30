@@ -3,6 +3,11 @@
 
 #include "basecard.h"
 
+/*
+ * UNOCard inherits from BaseCard to implement a
+ * standard UNO Card.
+ */
+
 class UNOCard : public BaseCard
 {
 public:

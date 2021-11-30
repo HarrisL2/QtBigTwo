@@ -281,9 +281,12 @@ void GameEngine::processMove(Combination* move) {
     }
     lastPlays[currentPlayer->toString()] = move->toJsonArray();
     QVector<BaseCard*> cards = move->getSorted();
+    bool drew = false;
     for (int i = 0; i < cards.size(); i++) {
         if (cards[i]->getEffect() == BaseCard::Effect::REVERSE) {
             turnDirection *= -1;
+            advanceNextPlayer();
+            advanceNextPlayer();
         } else if (cards[i]->getEffect() == BaseCard::Effect::SKIP) {
             QJsonArray empty;
             lastPlays[nextPlayer->toString()] = empty;
@@ -293,9 +296,10 @@ void GameEngine::processMove(Combination* move) {
             playerDraw(nextPlayer->toString());
             QJsonArray empty;
             lastPlays[nextPlayer->toString()] = empty;
-            advanceNextPlayer();
+            drew = true;
         }
     }
+    if (drew) advanceNextPlayer();
     Hand playerhand(playerHands[currentPlayer->toString()].toArray());
     for (int i = 0; i < cards.size(); i++) {
         playerhand.removeCard(cards[i]->getID());

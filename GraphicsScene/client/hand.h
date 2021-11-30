@@ -6,6 +6,11 @@
 #include <QVector>
 #include <QJsonArray>
 
+/*
+ * Hand is a class that conatins a varible amount of BaseCards.
+ * It also has functions that give the amount of specific cards
+ * which assist the logic of AI.
+ */
 
 class Hand
 {

@@ -1,6 +1,14 @@
 #ifndef BASECARD_H
 #define BASECARD_H
 
+/*
+ * BaseCard is an abstract base class for the creation of
+ * card-based data structures. It has pure virtual functions
+ * that return specific information about the cards such as
+ * numbers and colors. There is also an overloaded operator
+ * that acts as a validator for whether the lhs card can be
+ * played after the rhs card.
+ */
 
 class BaseCard
 {
