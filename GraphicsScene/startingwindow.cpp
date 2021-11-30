@@ -3,6 +3,7 @@
 
 #include "client/lobbywindow.h"
 
+#include <QGraphicsPixmapItem>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QHostAddress>
@@ -23,7 +24,10 @@ StartingWindow::StartingWindow(QWidget *parent) :
     server(nullptr)
 {
     ui->setupUi(this);
-    ui->Title->setPixmap(ui->Title->pixmap()->scaled(ui->Title->pixmap()->width() * 0.25,ui->Title->pixmap()->height() * 0.25));
+    QPixmap temp = ui->Title->pixmap();
+    ui->Title->setPixmap(temp.scaled(temp.width() * 0.25,temp.height() * 0.25));
+    rules = new QGraphicsScene();
+    ui->graphicsView->setScene(rules);
 }
 
 StartingWindow::~StartingWindow()
@@ -82,6 +86,15 @@ void StartingWindow::on_JoinRoom_clicked() {
         client->connectToServer(QHostAddress(ui->IPBox->toPlainText()),ui->PortBox->toPlainText().toInt());
 
     }
+}
+
+void StartingWindow::on_RulesButton_clicked() {
+    ui->stackedWidget->setCurrentIndex(1);
+    QPixmap ruleImage(":/cards/png/rules1.png");
+    QGraphicsPixmapItem* ruleItem = new QGraphicsPixmapItem;
+    ruleItem->setPixmap(ruleImage);
+    rules->addItem(ruleItem);
+    ui->graphicsView->fitInView(ruleItem);
 }
 
 /*

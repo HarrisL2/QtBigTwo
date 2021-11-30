@@ -2,6 +2,7 @@
 #define STARTINGWINDOW_H
 
 #include <QWidget>
+#include <QGraphicsScene>
 
 #include "server/client.h"
 #include "server/server.h"
@@ -22,6 +23,7 @@ private slots:
     void on_CreateRoom_clicked();
     void on_JoinRoom_clicked();
     void on_CreditsButton_clicked();
+    void on_RulesButton_clicked();
 
     void clientRecieved(const QJsonObject&);
     void clientConnectionFailed();
@@ -30,6 +32,7 @@ private:
     Ui::StartingWindow *ui;
     Client* client;
     Server* server;
+    QGraphicsScene* rules;
 };
 
 #endif // STARTINGWINDOW_H

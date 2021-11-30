@@ -284,6 +284,8 @@ void GameEngine::processMove(Combination* move) {
     for (int i = 0; i < cards.size(); i++) {
         if (cards[i]->getEffect() == BaseCard::Effect::REVERSE) {
             turnDirection *= -1;
+            advanceNextPlayer();
+            advanceNextPlayer();
         } else if (cards[i]->getEffect() == BaseCard::Effect::SKIP) {
             QJsonArray empty;
             lastPlays[nextPlayer->toString()] = empty;

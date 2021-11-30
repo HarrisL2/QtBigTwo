@@ -124,5 +124,8 @@
         <file>png/icon_rules.png</file>
         <file>png/logo.png</file>
         <file>png/up.png</file>
+        <file>png/rules1.png</file>
+        <file>png/rules2.png</file>
+        <file>png/rules3.png</file>
     </qresource>
 </RCC>

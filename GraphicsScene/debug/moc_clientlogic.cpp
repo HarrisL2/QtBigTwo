@@ -1,18 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'clientlogic.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.11)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.2.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../client/clientlogic.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'clientlogic.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.11. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.2.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,21 +22,18 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_ClientLogic_t {
-    QByteArrayData data[5];
+    const uint offsetsAndSize[10];
     char stringdata0[45];
 };
-#define QT_MOC_LITERAL(idx, ofs, len) \
-    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ClientLogic_t, stringdata0) + ofs \
-        - idx * sizeof(QByteArrayData)) \
-    )
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(offsetof(qt_meta_stringdata_ClientLogic_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_ClientLogic_t qt_meta_stringdata_ClientLogic = {
     {
-QT_MOC_LITERAL(0, 0, 11), // "ClientLogic"
-QT_MOC_LITERAL(1, 12, 11), // "dataChanged"
-QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 7), // "gameWon"
-QT_MOC_LITERAL(4, 33, 11) // "recieveData"
+QT_MOC_LITERAL(0, 11), // "ClientLogic"
+QT_MOC_LITERAL(12, 11), // "dataChanged"
+QT_MOC_LITERAL(24, 0), // ""
+QT_MOC_LITERAL(25, 7), // "gameWon"
+QT_MOC_LITERAL(33, 11) // "recieveData"
 
     },
     "ClientLogic\0dataChanged\0\0gameWon\0"
@@ -46,7 +44,7 @@ QT_MOC_LITERAL(4, 33, 11) // "recieveData"
 static const uint qt_meta_data_ClientLogic[] = {
 
  // content:
-       8,       // revision
+      10,       // revision
        0,       // classname
        0,    0, // classinfo
        3,   14, // methods
@@ -56,12 +54,12 @@ static const uint qt_meta_data_ClientLogic[] = {
        0,       // flags
        2,       // signalCount
 
- // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
-       3,    1,   30,    2, 0x06 /* Public */,
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    0,   32,    2, 0x06,    1 /* Public */,
+       3,    1,   33,    2, 0x06,    2 /* Public */,
 
- // slots: name, argc, parameters, tag, flags
-       4,    1,   33,    2, 0x08 /* Private */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       4,    1,   36,    2, 0x08,    4 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -77,7 +75,7 @@ void ClientLogic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<ClientLogic *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         switch (_id) {
         case 0: _t->dataChanged(); break;
         case 1: _t->gameWon((*reinterpret_cast< QString(*)>(_a[1]))); break;
@@ -103,12 +101,18 @@ void ClientLogic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject ClientLogic::staticMetaObject = { {
-    &QObject::staticMetaObject,
-    qt_meta_stringdata_ClientLogic.data,
+const QMetaObject ClientLogic::staticMetaObject = { {
+    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    qt_meta_stringdata_ClientLogic.offsetsAndSize,
     qt_meta_data_ClientLogic,
     qt_static_metacall,
     nullptr,
+qt_incomplete_metaTypeArray<qt_meta_stringdata_ClientLogic_t
+, QtPrivate::TypeAndForceComplete<ClientLogic, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QString, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QJsonObject &, std::false_type>
+
+
+>,
     nullptr
 } };
 
@@ -137,7 +141,7 @@ int ClientLogic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 3)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 3;
     }
     return _id;
@@ -152,7 +156,7 @@ void ClientLogic::dataChanged()
 // SIGNAL 1
 void ClientLogic::gameWon(QString _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP
