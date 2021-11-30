@@ -1,4 +1,4 @@
-## Big TwUNO
+## Big TwUNO[^note]
 
 This is a logic card game for 2 to 4 players, implementing the general rules of a traditional game Big Two but also added some elements of UNO into it, thus named Big TwUNO. 
 
@@ -41,3 +41,5 @@ After all the players are ready, the 1st player can press the ```Start Game``` b
 Above is an image of the Main Window. The bottom shows your hand. The four bars in the middle indicates the current player by green. The cards in front of other players are the last play of them. The 4 red arrows indicates the direction of turning. 
 
 **To play cards:** Use the mouse to select the cards you want to play and press ```space bar``` on the keyboard to play.
+
+[^note]: This project is developed using Qt version 5.15.
