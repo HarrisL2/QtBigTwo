@@ -10,6 +10,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/*
+ * MainWindow is the main interface for a game of Big
+ * TwUNO. It owns the ClientLogic and GraphicScene and
+ * acts as a coordinator between them.
+ */
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

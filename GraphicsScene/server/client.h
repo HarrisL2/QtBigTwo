@@ -4,6 +4,13 @@
 #include <QObject>
 #include <QTcpSocket>
 
+/*
+ * Client is a class that has a TcpSocket and is
+ * used to establish connections and exchange data
+ * with TcpServers. It is identifyable by a String
+ * based name.
+ */
+
 class Client : public QObject
 {
     Q_OBJECT

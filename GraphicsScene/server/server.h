@@ -6,6 +6,13 @@
 
 #include "worker.h"
 
+/*
+ * Server is a QTcpServer with extra utility functions
+ * to assist with the transfer of Json-based data files.
+ * It keep tracks of individual clients using String-based
+ * names.
+ */
+
 class Server : public QTcpServer
 {
     Q_OBJECT

@@ -9,6 +9,14 @@
 #include "../client/basecard.h"
 #include "../client/combination.h"
 
+/*
+ * GameEngine is the class that handles the server-side
+ * logic of a game of Big Two/TwUNO. It owns a server
+ * object and uses it to communicate with clients. It
+ * contains the data of player's hands and also has the
+ * logic for an AI player.
+ */
+
 class GameEngine : public QObject
 {
     Q_OBJECT

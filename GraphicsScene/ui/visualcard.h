@@ -3,6 +3,10 @@
 #include <QGraphicsPixmapItem>
 #include "../client/basecard.h"
 
+/*
+ * VisualCard is a QGraphicsPixmapItem that contains information
+ * about its ID and can respond to click events
+ */
 
 class VisualCard : public QGraphicsPixmapItem
 {

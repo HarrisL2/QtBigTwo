@@ -7,6 +7,13 @@
 #include "../server/client.h"
 #include "../server/server.h"
 
+/*
+ * The LobbyWindow is the interface for the players when
+ * a room is created but a game has not been started.
+ * They will set the amount of AI players and the mode
+ * of the game in this screen.
+ */
+
 namespace Ui {
 class LobbyWindow;
 }

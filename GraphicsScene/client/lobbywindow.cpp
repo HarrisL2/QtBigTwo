@@ -42,6 +42,7 @@ LobbyWindow::LobbyWindow(Client* client,
         ui->IPLabel->setText(server->getIP()+":"+QString::number(server->getPort()));
     } else {
         isHost = false;
+        ui->verticalWidget_2->hide();
     }
     connect(client, &Client::dataRecieved, this, &LobbyWindow::clientRecieved);
 

@@ -3,6 +3,13 @@
 
 #include <QTcpSocket>
 
+/*
+ * Worker is a helper class that Server creates to
+ * handle each connection with a client. It emits
+ * a signal that the server can respond to when
+ * new data is read.
+ */
+
 class Worker : public QObject
 {
     Q_OBJECT

@@ -8,6 +8,12 @@
 #include <QJsonArray>
 #include <QVector>
 
+/*
+ * ClientLogic is a class that handles the client-side logic of
+ * a game of Big Two/ Big TwUNO. It owns a Client object and has
+ * functions that perform the actions of a player in a game of
+ * Big Two/TwUNO.
+ */
 
 class ClientLogic : public QObject
 {

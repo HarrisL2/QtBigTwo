@@ -7,6 +7,12 @@
 #include "server/client.h"
 #include "server/server.h"
 
+/*
+ * StartingWindow is the UI that allows the user to
+ * select between starting or joining a room, and it
+ * also provides the rules to the game and credits.
+ */
+
 namespace Ui {
 class StartingWindow;
 }

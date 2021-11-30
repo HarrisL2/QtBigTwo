@@ -5,6 +5,13 @@
 #include <QJsonArray>
 #include "basecard.h"
 
+/*
+ * Combination is a class that provides a data structure that
+ * validates and creates plays in a game of Big Two/TwUNO. It
+ * contains a size-sorted vector of cards, while also
+ * perserving the original played order.
+ */
+
 class Combination
 {
 public:
