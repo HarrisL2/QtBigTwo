@@ -415,13 +415,55 @@
       </layout>
      </widget>
      <widget class="QWidget" name="page_6">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>636</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_17">
        <item>
-        <widget class="QGraphicsView" name="graphicsView"/>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Game rules
+Big TwUNO
+The game rules are similar to that of Big Two, however, it has some changes
+
+The Game start randomly.
+If top of the pool is Big Two Card, your options:
+1.	the bottom of your play card is Big Two card
+2.	the bottom of your play card can be any type of UNO card
+3.	Pass
+If the card combination has the same weight and contain UNO card, it is valid. Otherwise, need compare the weight to check whether valid.
+
+If top of the pool is UNO Card, your option:
+1.	the bottom of your play card is UNO card with same color or same number
+2.	the bottom of your play card can be any type of Big Two card
+3.	Pass
+If the card combination has the same weight and contain UNO card, it is valid. Otherwise, need compare the weight to check whether valid.
+
+</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="BackButton">
+         <property name="text">
+          <string>Back</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page"/>
     </widget>
    </item>
   </layout>

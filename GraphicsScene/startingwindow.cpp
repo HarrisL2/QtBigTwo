@@ -26,8 +26,6 @@ StartingWindow::StartingWindow(QWidget *parent) :
     ui->setupUi(this);
     QPixmap temp = ui->Title->pixmap();
     ui->Title->setPixmap(temp.scaled(temp.width() * 0.25,temp.height() * 0.25));
-    rules = new QGraphicsScene();
-    ui->graphicsView->setScene(rules);
 }
 
 StartingWindow::~StartingWindow()
@@ -90,11 +88,6 @@ void StartingWindow::on_JoinRoom_clicked() {
 
 void StartingWindow::on_RulesButton_clicked() {
     ui->stackedWidget->setCurrentIndex(1);
-    QPixmap ruleImage(":/cards/png/rules1.png");
-    QGraphicsPixmapItem* ruleItem = new QGraphicsPixmapItem;
-    ruleItem->setPixmap(ruleImage);
-    rules->addItem(ruleItem);
-    ui->graphicsView->fitInView(ruleItem);
 }
 
 /*
@@ -109,6 +102,10 @@ void StartingWindow::on_CreditsButton_clicked() {
     QMessageBox* msg = new QMessageBox;
     msg->setText("Made by Lau Yan Hei, Lau Sin Yee and Chan Wai Chun, 2021.");
     msg->show();
+}
+
+void StartingWindow::on_BackButton_clicked() {
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 /*

@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPlainTextEdit>
@@ -65,8 +64,8 @@ public:
     QSpacerItem *verticalSpacer_6;
     QWidget *page_6;
     QVBoxLayout *verticalLayout_17;
-    QGraphicsView *graphicsView;
-    QWidget *page;
+    QLabel *label_3;
+    QPushButton *BackButton;
 
     void setupUi(QWidget *StartingWindow)
     {
@@ -316,17 +315,23 @@ public:
         stackedWidget->addWidget(Main);
         page_6 = new QWidget();
         page_6->setObjectName(QString::fromUtf8("page_6"));
+        page_6->setMaximumSize(QSize(16777215, 636));
         verticalLayout_17 = new QVBoxLayout(page_6);
         verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
-        graphicsView = new QGraphicsView(page_6);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        label_3 = new QLabel(page_6);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setTextFormat(Qt::PlainText);
+        label_3->setScaledContents(true);
+        label_3->setWordWrap(true);
 
-        verticalLayout_17->addWidget(graphicsView);
+        verticalLayout_17->addWidget(label_3);
+
+        BackButton = new QPushButton(page_6);
+        BackButton->setObjectName(QString::fromUtf8("BackButton"));
+
+        verticalLayout_17->addWidget(BackButton);
 
         stackedWidget->addWidget(page_6);
-        page = new QWidget();
-        page->setObjectName(QString::fromUtf8("page"));
-        stackedWidget->addWidget(page);
 
         verticalLayout_2->addWidget(stackedWidget);
 
@@ -348,6 +353,25 @@ public:
         PortBox->setPlaceholderText(QCoreApplication::translate("StartingWindow", "Port", nullptr));
         RulesButton->setText(QCoreApplication::translate("StartingWindow", "Rules", nullptr));
         CreditsButton->setText(QCoreApplication::translate("StartingWindow", "Credits", nullptr));
+        label_3->setText(QCoreApplication::translate("StartingWindow", "Game rules\n"
+"Big TwUNO\n"
+"The game rules are similar to that of Big Two, however, it has some changes\n"
+"\n"
+"The Game start randomly.\n"
+"If top of the pool is Big Two Card, your options:\n"
+"1.	the bottom of your play card is Big Two card\n"
+"2.	the bottom of your play card can be any type of UNO card\n"
+"3.	Pass\n"
+"If the card combination has the same weight and contain UNO card, it is valid. Otherwise, need compare the weight to check whether valid.\n"
+"\n"
+"If top of the pool is UNO Card, your option:\n"
+"1.	the bottom of your play card is UNO card with same color or same number\n"
+"2.	the bottom of your play card can be any type of Big Two card\n"
+"3.	Pass\n"
+"If the card combination has the same weight and contain UNO card, it is valid. Otherwise, need compare the weight to check whether valid.\n"
+"\n"
+"", nullptr));
+        BackButton->setText(QCoreApplication::translate("StartingWindow", "Back", nullptr));
     } // retranslateUi
 
 };

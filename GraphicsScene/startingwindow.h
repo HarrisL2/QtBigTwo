@@ -24,6 +24,7 @@ private slots:
     void on_JoinRoom_clicked();
     void on_CreditsButton_clicked();
     void on_RulesButton_clicked();
+    void on_BackButton_clicked();
 
     void clientRecieved(const QJsonObject&);
     void clientConnectionFailed();
@@ -32,7 +33,6 @@ private:
     Ui::StartingWindow *ui;
     Client* client;
     Server* server;
-    QGraphicsScene* rules;
 };
 
 #endif // STARTINGWINDOW_H
